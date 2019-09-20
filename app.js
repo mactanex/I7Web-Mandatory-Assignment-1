@@ -1,16 +1,14 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const db = require("./app_server/DAL/db");
 const indexRouter = require("./app_server/routes/index");
-
 const usersRouter = require("./app_server/routes/users");
-
 const exerciseRouter = require("./app_server/routes/exerciseProgram");
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "app_server", "views"));
