@@ -8,6 +8,32 @@ const indexRouter = require("./app_server/routes/index");
 
 const usersRouter = require("./app_server/routes/users");
 
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+
+// Connection URL
+const url = 'mongodb://localhost:27017';
+
+// Database Name
+const dbName = 'I7WebAss';
+
+// Create a new MongoClient
+const client = new MongoClient(url);
+
+// Use connect method to connect to the Server
+client.connect(function (err) {
+  assert.strictEqual(err, null);
+  console.log("Connected successfully to server");
+
+  const db = client.db(dbName);
+  if (db) {
+    db.addUser
+  }
+  client.close();
+});
+
+
+
 var app = express();
 
 // view engine setup
@@ -16,7 +42,9 @@ app.set("view engine", "pug");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -24,12 +52,12 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
