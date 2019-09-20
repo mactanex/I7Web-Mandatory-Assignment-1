@@ -6,7 +6,8 @@ const ctrlAccount = require('./../Controllers/accountController');
 
 /* GET home page. */
 router.get('/', ctrlAccount.loginPage);
-router.post('/', ctrlAccount.login);
+router.post('/login', ctrlAccount.login);
+
 router.get('/signup', ctrlAccount.signupPage);
 
 
