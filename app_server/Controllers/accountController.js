@@ -1,11 +1,14 @@
+var express = require('express');
+var router = express.Router();
+
 
 module.exports.loginPage = (req, res, next) => {
     res.render('index', { title: 'Mandatory Assignment 1 - Exercise Manager' });
   }
 
 module.exports.login = (req, res, next) => {
-    //res.render('index', { title: 'Mandatory Assignment 1 - Exercise Manager' });
-    res.end();
+
+    res.redirect('/exerciseProgram');
   }
   
 
