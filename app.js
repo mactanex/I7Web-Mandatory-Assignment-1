@@ -8,18 +8,15 @@ const indexRouter = require("./app_server/routes/index");
 
 const usersRouter = require("./app_server/routes/users");
 
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
+const MongoClient = require("mongodb").MongoClient;
+const assert = require("assert");
 
 // Connection URL
-const url = 'mongodb://localhost:27017';
-
+const url = "mongodb://localhost:27017";
 // Database Name
-const dbName = 'I7WebAss';
-
+const dbName = "I7WebAss";
 // Create a new MongoClient
 const client = new MongoClient(url);
-
 // Use connect method to connect to the Server
 client.connect(function (err) {
   assert.strictEqual(err, null);
@@ -27,12 +24,10 @@ client.connect(function (err) {
 
   const db = client.db(dbName);
   if (db) {
-    db.addUser
+    console.log(db.listCollections());
   }
   client.close();
 });
-
-
 
 var app = express();
 
@@ -42,9 +37,11 @@ app.set("view engine", "pug");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: false
-}));
+app.use(
+  express.urlencoded({
+    extended: false
+  })
+);
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
