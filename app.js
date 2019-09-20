@@ -10,27 +10,6 @@ const usersRouter = require("./app_server/routes/users");
 
 const exerciseRouter = require("./app_server/routes/exerciseProgram");
 
-const MongoClient = require("mongodb").MongoClient;
-const assert = require("assert");
-
-// Connection URL
-const url = "mongodb://localhost:27017";
-// Database Name
-const dbName = "I7WebAss";
-// Create a new MongoClient
-const client = new MongoClient(url);
-// Use connect method to connect to the Server
-client.connect(function (err) {
-  assert.strictEqual(err, null);
-  console.log("Connected successfully to server");
-
-  const db = client.db(dbName);
-  if (db) {
-    console.log(db.listCollections());
-  }
-  client.close();
-});
-
 var app = express();
 
 // view engine setup
@@ -49,7 +28,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/exerciseProgram",exerciseRouter);
+app.use("/exerciseProgram", exerciseRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
