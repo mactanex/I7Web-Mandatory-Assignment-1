@@ -1,14 +1,14 @@
 module.exports.ExerciseProgramHomePage = (req, res, next) => {
-    res.render('ExerciseProgramHomePage', {  });
+    res.render('ExerciseProgramHome', {  });
   }
 
 module.exports.ExerciseProgramNewPage = (req, res, next) => {
-    res.render('ExerciseProgramNewPage', {  });
+    res.render('ExerciseProgramNew', {  });
 }
 
 
 module.exports.ExerciseProgramSpecificPage = (req, res, next) => {
-    res.render('ExerciseProgramSpecificPage', {});
+    res.render('ExerciseProgramSpecific', {});
 }
 
 module.exports.NewExerciseProgram = (req, res, next) => {
