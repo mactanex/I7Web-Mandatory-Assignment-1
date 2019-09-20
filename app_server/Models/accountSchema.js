@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const crypto = require('crypto');
-const exerciseProgramSchemas = require('./exerciseProgramSchema')
+const exerciseProgramSchema = require('./exerciseProgramSchema')
 
 const accountSchema = new mongoose.Schema({
     username: {
@@ -14,7 +14,7 @@ const accountSchema = new mongoose.Schema({
     hash: String,
     salt: String,
     exercisePrograms: {
-        type: [exerciseProgramsSchema],
+        type: [exerciseProgramSchema],
         default: []
     }
 }, {
@@ -25,14 +25,15 @@ accountSchema.plugin(uniqueValidator, {
     message: 'findes allerede.'
 });
 
-accountSchema.methods.setPassword = function (this, password) {
+accountSchema.methods.setPassword = function ( password) {
     this.salt = crypto.randomBytes(16).toString('hex');
     this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha256').toString('binary');
 };
 
-accountSchema.methods.validPassword = function (this, password) {
+accountSchema.methods.validPassword = function ( password) {
     const hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('binary');
     return this.hash === hash
 };
 
-mongoose.model('User', accountSchema);
+const User = mongoose.model('User', accountSchema);
+module.exports.User = User;

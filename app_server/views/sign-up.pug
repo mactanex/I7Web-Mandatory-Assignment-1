@@ -3,18 +3,18 @@ block content
     h1 Signup 
     div.container.text-center
         form(method='POST' action='/signup')
-        div(class='form-input')
-            b
-            label Username:
+            div(class='form-input')
+                b
+                label Username:
+                br
+                input#studentName(type='text', name='username')
+            div(class='form-input')
+                b 
+                label Password:
+                br
+                input(type='password', name='password')
             br
-            input#studentName(type='text', name='username')
-        div(class='form-input')
-            b 
-            label Password:
-            br
-            input(type='password', name='password')
-        br
-        button(type='submit' class='btn btn-primary') Signup
+            button(type='submit' class='btn btn-primary') Signup
         br
         br
         a(href="/" class='btn btn-secondary') Login
