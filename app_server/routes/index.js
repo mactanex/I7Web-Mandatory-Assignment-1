@@ -1,3 +1,5 @@
+"use strict"; //good practice
+
 var express = require("express");
 var router = express.Router();
 

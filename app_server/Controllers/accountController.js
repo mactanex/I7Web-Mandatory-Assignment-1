@@ -1,29 +1,19 @@
-var express = require("express");
-var mongoose = require("mongoose");
+"use strict"; //good practice
+
 var accountSchema = require("./../Models/accountSchema");
 var passport = require("passport");
-require("passport-local");
 
 module.exports.loginPage = (req, res, next) => {
-  res.render("index", { title: "Mandatory Assignment 1 - Exercise Manager" });
+  res.render("index", {
+    title: "Mandatory Assignment 1 - Exercise Manager"
+  });
 };
 
 module.exports.login = (req, res, next) => {
-  const userInstance = accountSchema.User.findOne(
-    { username: req.body.username },
-    function(err, user) {
-      if (err) res.redirect("/");
-      if (user.validPassword(req.body.password)) {
-        passport.authenticate("local", {
-          successReturnToOrRedirect: "/exerciseProgram",
-          failureRedirect: "/"
-        });
-        res.redirect("/exerciseProgram");
-      } else {
-        res.redirect("/");
-      }
-    }
-  );
+  passport.authenticate("local", {
+    failureRedirect: "/",
+    successRedirect: "/exerciseProgram"
+  })(req, res, next)
 };
 
 module.exports.signupPage = (req, res, next) => {
@@ -31,9 +21,11 @@ module.exports.signupPage = (req, res, next) => {
 };
 
 module.exports.signup = (req, res, next) => {
-  const userInstance = new accountSchema.User({ username: req.body.username });
+  const userInstance = new accountSchema.User({
+    username: req.body.username
+  });
   userInstance.setPassword(req.body.password);
-  userInstance.save(function(err) {
+  userInstance.save(function (err) {
     if (err) {
       req.flash(
         "error",
