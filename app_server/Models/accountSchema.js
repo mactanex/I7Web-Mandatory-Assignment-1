@@ -14,7 +14,7 @@ const accountSchema = new mongoose.Schema({
     hash: String,
     salt: String,
     exercisePrograms: {
-        type: [exerciseProgramSchemas],
+        type: [exerciseProgramsSchema],
         default: []
     }
 }, {

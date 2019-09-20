@@ -1,21 +1,22 @@
 const mongoose = require('mongoose');
 
-const exerciseProgramSchema = new mongoose.Schema({
+const exerciseSchema = new mongoose.Schema({
     name: String,
     description: String,
     set: Number,
     repsOrTime: String
 });
 
-const exerciseProgramSchemas = new mongoose.Schema({
-    exerciseProgramSchemas: {
-        type: [exerciseProgramSchema],
+const exerciseProgramSchema = new mongoose.Schema({
+    name: String,
+    exerciseProgram: {
+        type: [exerciseSchema],
         default: []
     }
 });
 
-module.exports.exerciseProgramSchemas = exerciseProgramSchemas;
 module.exports.exerciseProgramSchema = exerciseProgramSchema;
+module.exports.exerciseSchema = exerciseSchema;
 
 mongoose.model('ExerciseProgram', exerciseProgramSchema);
-mongoose.model('ExerciseProgram', exerciseProgramSchemas);
+mongoose.model('Exercise', exerciseSchemas);
