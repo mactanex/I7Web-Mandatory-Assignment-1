@@ -10,6 +10,8 @@ router.post('/login', ctrlAccount.login);
 
 router.get('/signup', ctrlAccount.signupPage);
 
+router.post('/signup', ctrlAccount.signup);
+
 
 
 module.exports = router;

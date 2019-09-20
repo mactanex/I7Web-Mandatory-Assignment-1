@@ -1,5 +1,6 @@
 var express = require('express');
-var router = express.Router();
+var mongoose = require('mongoose');
+var accountSchema = require('./../Models/accountSchema');
 
 
 module.exports.loginPage = (req, res, next) => {
@@ -17,7 +18,10 @@ module.exports.signupPage = (req, res, next) => {
   }
 
 module.exports.signup = (req, res, next) => {
-    res.end();
+    const userInstance = new accountSchema.User({username: 'Kristoffer'});
+    userInstance.setPassword('sommerguf');
+    userInstance.save();
+    res.redirect('/');
   }
   
   

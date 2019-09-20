@@ -19,4 +19,4 @@ module.exports.exerciseProgramSchema = exerciseProgramSchema;
 module.exports.exerciseSchema = exerciseSchema;
 
 mongoose.model('ExerciseProgram', exerciseProgramSchema);
-mongoose.model('Exercise', exerciseSchemas);
+mongoose.model('Exercise', exerciseSchema);
