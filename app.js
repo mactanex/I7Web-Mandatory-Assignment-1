@@ -3,13 +3,6 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var mongoose = require("mongoose");
-
-const dbName = "I7WebAss";
-const connectionString = "http://localhost:27017/" + dbName;
-mongoose.connect(connectionString, {
-  useNewUrlParser: true
-});
 
 const indexRouter = require("./app_server/routes/index");
 
