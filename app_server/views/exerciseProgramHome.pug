@@ -5,14 +5,26 @@ block content
         h1 Workout Programs
         p Here you can see all your workout programs.
          form(action="/exerciseProgram/newExerciseProgram", method="post")
+            h4 Add new Workout Program
             div(class='form-input')
                 label(for="name") 
                    b Name: 
                 br
                 input(type="text", name="name")
-                button( type="submit" href="" class='btn btn-primary') Add new program
-        a(href="" class='btn btn-primary') Log Workout
-
+                button.margin( type="submit" href="" class='btn btn-primary') Add new program
+        table(style='width:100%', border='1')
+            tr
+                th Name
+                th Actions
+            each element in user.exercisePrograms 
+                tr
+                    td=element.name
+                    td
+                        a.margin(href="" class="btn btn-primary") Details
+            else
+                p No exercises yet, look above to add one... 
+        
+                    
         
 
         
