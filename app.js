@@ -16,6 +16,11 @@ const app = express();
 
 require("./app_server/config/passport")(passport);
 
+//-----------------------IMPORTANT-----------------------------
+// Deployment url:
+// https://peaceful-spire-17476.herokuapp.com/
+
+//-----------------------IMPORTANT-----------------------------
 // view engine setup
 app.set("views", path.join(__dirname, "app_server", "views"));
 app.set("view engine", "pug");
