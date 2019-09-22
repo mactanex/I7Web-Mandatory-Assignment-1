@@ -5,17 +5,26 @@ block content
         h1 Add new Program
         form(action="/newExercise", method="post")
             div(class='form-input')
-                label(for="name")
+                label(for="name") 
+                   b Name: 
+                br
                 input(type="text", name="name")
             div(class='form-input')
                 label(for="description")
+                    b Description:
+                br
                 input(type="textarea", name="description")
             div(class='form-input')
                 label(for="rep")
+                    b Repetitions:
+                br
                 input(type="number", name="rep")
             div(class='form-input')
                 label(for="repsOrTime")
+                    b Repetitions or time:
+                br
                 input(type="text",name="repsOrTime")
+            br
             button(type='submit' class="btn btn-primary") Add exercise
 
         

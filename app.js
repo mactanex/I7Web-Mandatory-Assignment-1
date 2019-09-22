@@ -10,12 +10,11 @@ var passport = require("passport");
 let auth = require("connect-ensure-login");
 
 const indexRouter = require("./app_server/routes/index");
-const usersRouter = require("./app_server/routes/users");
 const exerciseRouter = require("./app_server/routes/exerciseProgram");
 
 const app = express();
 
-require('./app_server/config/passport')(passport);
+require("./app_server/config/passport")(passport);
 
 // view engine setup
 app.set("views", path.join(__dirname, "app_server", "views"));
@@ -30,24 +29,26 @@ app.use(
 );
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(require('express-session')({ // MUST USE IN ORDER TO CALL isValidated()!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(
+  require("express-session")({
+    // MUST USE IN ORDER TO CALL isValidated()!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false
+  })
+);
 // required for passport
 app.use(passport.initialize()); // MUST USE BEFORE CALL TO SESSION!!!!!!!
-app.use(passport.session()) // MUST USE IN ORDER TO CALL isValidated()!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+app.use(passport.session()); // MUST USE IN ORDER TO CALL isValidated()!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 app.use("/exerciseProgram", exerciseRouter);
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
