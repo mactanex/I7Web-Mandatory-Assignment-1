@@ -23,21 +23,21 @@ block content
                 label(for="name") 
                    b Name: 
                 br
-                input(type="text", name="name")
+                input(type="text", name="name" required)
             div(class='form-input')
                 label(for="description")
                     b Description:
                 br
-                textarea( name="description")
+                textarea( name="description" required)
             div(class='form-input')
                 label(for="set")
                     b Set:
                 br
-                input(type="number", name="set")
+                input(type="number", name="set" required)
             div(class='form-input')
                 label(for="repsOrTime")
                     b Repetitions or Time:
                 br
-                input(type="text",name="repsOrTime")
+                input(type="text",name="repsOrTime" required)
             br
             button(type='submit' class="btn btn-primary") Add exercise

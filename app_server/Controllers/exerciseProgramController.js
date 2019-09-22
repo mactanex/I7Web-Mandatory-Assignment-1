@@ -13,27 +13,29 @@ module.exports.ExerciseProgramSpecificPage = (req, res, next) => {
   var index = req.user.exercisePrograms.findIndex(
     x => x.name == req.param("title")
   );
-  const exProgram = req.user.exercisePrograms[index];
+  if (index > -1) {
+    currentExerciseProgramTitle = req.param("title");
+    const exProgram = req.user.exercisePrograms[index];
 
-  res.render("ExerciseProgramSpecific", {
-    title: currentExerciseProgramTitle,
-    list: exProgram.exerciseProgram
-  });
+    res.render("ExerciseProgramSpecific", {
+      title: currentExerciseProgramTitle,
+      list: exProgram.exerciseProgram
+    });
+  } else {
+    res.render("error", {
+      message: "index not found",
+      error: { status: 404, stack: "ExerciseProgramSpecificPage" }
+    });
+  }
 };
 
 module.exports.NewExercise = (req, res, next) => {
-  //res.render('index', { title: 'Mandatory Assignment 1 - Exercise Manager' });
   let exercise = {
     name: req.body.name,
     description: req.body.description,
     set: req.body.set,
     repsOrTime: req.body.repsOrTime
   };
-  //const exProgram = req.user.exercisePrograms.find(
-  //  x => x.name == currentExerciseProgramTitle
-  //);
-
-  //console.log(exProgram);
 
   //find index
   var index = req.user.exercisePrograms.findIndex(
@@ -57,7 +59,6 @@ module.exports.NewExercise = (req, res, next) => {
 };
 
 module.exports.NewExerciseProgram = (req, res, next) => {
-  //res.render('index', { title: 'Mandatory Assignment 1 - Exercise Manager' });
   let exerciseProgram = { name: req.body.name, exerciseProgram: [] };
   currentExerciseProgramTitle = exerciseProgram.name;
   req.user.exercisePrograms.push(exerciseProgram);
@@ -66,6 +67,5 @@ module.exports.NewExerciseProgram = (req, res, next) => {
     title: req.body.name,
     list: exerciseProgram.exerciseProgram
   });
-  //res.redirect("/exerciseProgram/newExerciseProgram");
   res.end();
 };
