@@ -9,6 +9,21 @@ module.exports.loginPage = (req, res, next) => {
   });
 };
 
+module.exports.logout = (req, res, next) => {
+  req.logout();
+  req.session.destroy(function(err) {
+    if (!err) {
+      res
+        .status(200)
+        .clearCookie("connect.sid", { path: "/" })
+        .json({ status: "Success" });
+    } else {
+      // handle error case...
+    }
+  });
+  res.redirect("/");
+};
+
 module.exports.login = (req, res, next) => {
   passport.authenticate("local", {
     failureRedirect: "/",
