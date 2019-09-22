@@ -10,7 +10,15 @@ module.exports.ExerciseProgramHomePage = (req, res, next) => {
 };
 
 module.exports.ExerciseProgramSpecificPage = (req, res, next) => {
-  res.render("ExerciseProgramSpecific", {});
+  var index = req.user.exercisePrograms.findIndex(
+    x => x.name == req.param("title")
+  );
+  const exProgram = req.user.exercisePrograms[index];
+
+  res.render("ExerciseProgramSpecific", {
+    title: currentExerciseProgramTitle,
+    list: exProgram.exerciseProgram
+  });
 };
 
 module.exports.NewExercise = (req, res, next) => {
