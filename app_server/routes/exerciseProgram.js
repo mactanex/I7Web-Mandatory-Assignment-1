@@ -14,7 +14,13 @@ router.get(
   ctrlExerciseProgram.ExerciseProgramHomePage
 );
 router.post(
-  "/new",
+  "/newExercise",
+  auth.ensureLoggedIn("/"),
+  ctrlExerciseProgram.NewExercise
+);
+
+router.post(
+  "/newExerciseProgram",
   auth.ensureLoggedIn("/"),
   ctrlExerciseProgram.NewExerciseProgram
 );
