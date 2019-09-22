@@ -6,7 +6,7 @@ var accountSchema = require("./../Models/accountSchema");
 var currentExerciseProgramTitle = "";
 
 module.exports.ExerciseProgramHomePage = (req, res, next) => {
-  res.render("ExerciseProgramHome", { user: req.user });
+  res.render("exerciseProgramHome", { user: req.user });
 };
 
 module.exports.ExerciseProgramSpecificPage = (req, res, next) => {
@@ -17,7 +17,7 @@ module.exports.ExerciseProgramSpecificPage = (req, res, next) => {
     currentExerciseProgramTitle = req.param("title");
     const exProgram = req.user.exercisePrograms[index];
 
-    res.render("ExerciseProgramSpecific", {
+    res.render("exerciseProgramSpecific", {
       title: currentExerciseProgramTitle,
       list: exProgram.exerciseProgram
     });
@@ -51,7 +51,7 @@ module.exports.NewExercise = (req, res, next) => {
   req.user.exercisePrograms.push(exProgram);
   // save in db.
   req.user.save();
-  res.render("ExerciseProgramNew", {
+  res.render("exerciseProgramNew", {
     title: currentExerciseProgramTitle,
     list: exProgram.exerciseProgram
   });
