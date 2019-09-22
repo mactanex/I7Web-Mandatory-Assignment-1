@@ -63,7 +63,7 @@ module.exports.NewExerciseProgram = (req, res, next) => {
   currentExerciseProgramTitle = exerciseProgram.name;
   req.user.exercisePrograms.push(exerciseProgram);
   req.user.save();
-  res.render("ExerciseProgramNew", {
+  res.render("exerciseProgramNew", {
     title: req.body.name,
     list: exerciseProgram.exerciseProgram
   });

@@ -13,7 +13,7 @@ module.exports.login = (req, res, next) => {
   passport.authenticate("local", {
     failureRedirect: "/",
     successRedirect: "/exerciseProgram"
-  })(req, res, next)
+  })(req, res, next);
 };
 
 module.exports.signupPage = (req, res, next) => {
@@ -25,7 +25,7 @@ module.exports.signup = (req, res, next) => {
     username: req.body.username
   });
   userInstance.setPassword(req.body.password);
-  userInstance.save(function (err) {
+  userInstance.save(function(err) {
     if (err) {
       req.flash(
         "error",
