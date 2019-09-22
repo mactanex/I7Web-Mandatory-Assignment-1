@@ -26,11 +26,6 @@ router.post(
 );
 
 router.get(
-  "/newExerciseProgram",
-  auth.ensureLoggedIn("/"),
-  ctrlExerciseProgram.ExerciseProgramNewPage
-);
-router.get(
   "/specificExerciseProgram",
   auth.ensureLoggedIn("/"),
   ctrlExerciseProgram.ExerciseProgramSpecificPage

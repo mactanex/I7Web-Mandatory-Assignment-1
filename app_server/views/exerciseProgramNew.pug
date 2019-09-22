@@ -2,7 +2,9 @@ extends layout
 
 block content
     div.container.text-center
-        h1 Add new Program
+        h1= name
+
+        h2 Add new workout to Program
         form(action="/exerciseProgram/newExercise", method="post")
             div(class='form-input')
                 label(for="name") 
@@ -13,18 +15,19 @@ block content
                 label(for="description")
                     b Description:
                 br
-                input(type="textarea", name="description")
+                textarea( name="description")
             div(class='form-input')
-                label(for="rep")
-                    b Repetitions:
+                label(for="set")
+                    b Set:
                 br
-                input(type="number", name="rep")
+                input(type="number", name="set")
             div(class='form-input')
                 label(for="repsOrTime")
-                    b Repetitions or time:
+                    b Repetitions or Time:
                 br
                 input(type="text",name="repsOrTime")
             br
             button(type='submit' class="btn btn-primary") Add exercise
-
+        
+            
         
