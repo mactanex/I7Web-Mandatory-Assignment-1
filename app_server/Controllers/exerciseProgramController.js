@@ -19,12 +19,14 @@ module.exports.ExerciseProgramSpecificPage = (req, res, next) => {
 
     res.render("exerciseProgramSpecific", {
       title: currentExerciseProgramTitle,
-      list: exProgram.exerciseProgram
+      list: exProgram.exerciseProgram,
+      user: req.user
     });
   } else {
     res.render("error", {
       message: "index not found",
-      error: { status: 404, stack: "ExerciseProgramSpecificPage" }
+      error: { status: 404, stack: "ExerciseProgramSpecificPage" },
+      user: req.user
     });
   }
 };
@@ -53,7 +55,8 @@ module.exports.NewExercise = (req, res, next) => {
   req.user.save();
   res.render("exerciseProgramNew", {
     title: currentExerciseProgramTitle,
-    list: exProgram.exerciseProgram
+    list: exProgram.exerciseProgram,
+    user: req.user
   });
   res.end();
 };
@@ -65,7 +68,8 @@ module.exports.NewExerciseProgram = (req, res, next) => {
   req.user.save();
   res.render("exerciseProgramNew", {
     title: req.body.name,
-    list: exerciseProgram.exerciseProgram
+    list: exerciseProgram.exerciseProgram,
+    user: req.user
   });
   res.end();
 };

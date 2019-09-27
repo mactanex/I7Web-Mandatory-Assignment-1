@@ -5,7 +5,8 @@ var passport = require("passport");
 
 module.exports.loginPage = (req, res, next) => {
   res.render("index", {
-    title: "Mandatory Assignment 1 - Exercise Manager"
+    title: "Mandatory Assignment 1 - Exercise Manager",
+    user: req.user
   });
 };
 
@@ -32,7 +33,7 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.signupPage = (req, res, next) => {
-  res.render("sign-up", {});
+  res.render("sign-up", { user: req.user });
 };
 
 module.exports.signup = (req, res, next) => {

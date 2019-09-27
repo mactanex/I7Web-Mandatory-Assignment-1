@@ -4,6 +4,7 @@ block content
   h1= title
   p Welcome to #{title}
   div.container.text-center
+    h3 Login
     form(method='POST' action='/login')
       div(class='form-input')
         b
@@ -19,4 +20,3 @@ block content
       button(type='submit' class='btn btn-primary') Login
       br
       br
-      a(href="/signup" class='btn btn-secondary') Sign Up
