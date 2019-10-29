@@ -6,24 +6,25 @@ const exerciseSchema = new mongoose.Schema({
   description: String,
   set: Number,
   repsOrTime: String,
-  activities: [logSchema]
-}, {
-  _id: true
-});
+  activities: [logSchema],
+}, { _id: true });
 
 const exerciseProgramSchema = new mongoose.Schema({
   name: String,
   exerciseProgram: {
     type: [exerciseSchema],
     default: [],
-  },
-  // _id: true
-}, {
-  _id: true
-});
+  }
 
-module.exports.exerciseProgramSchema = mongoose.model(
-  "ExerciseProgram",
+}, { _id: true });
+
+
+module.exports.exercise = mongoose.model("Exercise", exerciseSchema);
+
+module.exports.exerciseProgram = mongoose.model(
+  "exerciseProgram",
   exerciseProgramSchema
 );
-module.exports.exerciseSchema = mongoose.model("Exercise", exerciseSchema);
+
+module.exports.exerciceProgramSchema = exerciseProgramSchema;
+module.exports.exerciseSchema = exerciseSchema;

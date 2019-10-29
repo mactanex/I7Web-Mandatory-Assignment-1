@@ -17,54 +17,89 @@ module.exports.GetAllExercisePrograms = (req, res, next) => {
       });
       // console.log(users);
       users.forEach((user) => {
-        user.exercisePrograms.forEach(ep => allPrograms.push(ep));
-        console.log(allPrograms);
-        res.status(200);
-        res.json({
-          allPrograms
+        user.exercisePrograms.forEach(ep => {
+          console.log(ep._id);
+          allPrograms.push(ep)
         });
-
+      });
+      res.status(200);
+      res.json({
+        allPrograms
       });
     }
   });
 }
 
 module.exports.Delete = (req, res, next) => {
-  res.status(200);
-  res.json({
-    message: "success"
+  const exerciseProgramId = req.params.exerciseProgramId;
+
+  req.user.exercisePrograms.splice(exerciseProgramId, 1)
+  req.user.save(function (err) {
+    if (err) {
+      res.status(400);
+      res.json({
+        message: "error: " + err
+      });
+    } else {
+      res.status(200);
+      res.json({
+        message: "success"
+      });
+    }
   });
+
+
 }
 
 module.exports.Put = (req, res, next) => {
-  res.status(200);
-  res.json({
-    message: "success"
+  const exerciseProgramId = req.params.exerciseProgramId;
+  const exerciseProgramToUpdate = req.user.exercisePrograms.find(function (ex) {
+    return ex._id = exerciseProgramId;
   });
+  exerciseProgramToUpdate.name = req.body.name;
+  req.user.exercisePrograms.id(exerciseProgramId) = exerciseProgramToUpdate;
+
+  req.user.save(function (err) {
+    if (err) {
+      res.status(400);
+      res.json({
+        message: "error: " + err
+      });
+    } else {
+      res.status(200);
+      res.json({
+        message: "success"
+      });
+    }
+  });
+
 }
 
 module.exports.Get = (req, res, next) => {
-  res.status(200);
-  res.json({
-    message: "success"
+  const exerciseProgramId = req.params.exerciseProgramId;
+  const exerciseProgram = req.user.exercisePrograms.find(function (ex) {
+    return ex._id = exerciseProgramId;
   });
+  if (!exerciseProgram) {
+    res.status(200);
+    res.json({
+      message: exerciseProgram
+    });
+  } else {
+    res.status(400);
+    res.json({
+      message: "exercise program does not exist"
+    });
+  }
 }
 
-// module.exports.NewExerciseProgram = (req, res, next) => {
-
-//   let exerciseProgram = {
-//     name: req.body.name
-//   };
-
-//   const user = req.user;
-//   res.status(200);
-// };
 
 module.exports.NewExerciseProgram = (req, res, next) => {
-  let exerciseProgram = {
-    name: req.body.name,
-    exerciseProgram: []
-  };
+  console.log("this is not right");
+  const exerciseProgram = new exerciseProgramSchema.exerciseProgram({
+    name: req.body.name
+  })
+  console.log("uis");
   req.user.exercisePrograms.push(exerciseProgram);
   req.user.save(function (err) {
     if (err) {
