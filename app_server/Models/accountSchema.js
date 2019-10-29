@@ -11,7 +11,6 @@ const accountSchema = new mongoose.Schema(
       type: String,
       lowercase: true,
       required: [true, "kan ikke vaere tom"],
-      /* match: [/^[a-zA-Z0-9]+$/, "er ugyldig"], */
       index: true
     },
     hash: String,
