@@ -2,33 +2,25 @@
 
 var express = require("express");
 var router = express.Router();
-let auth = require("connect-ensure-login");
+var jwt = require("express-jwt");
+var auth = jwt({
+  secret: process.env.JWT_SECRET,
+  userProperty: "payload"
+});
 const ctrlExerciseProgram = require("./../Controllers/exerciseProgramController");
 // let authe = require("./../authentication/middleware");
 
-/* GET home page. */
-router.get(
-  "/",
-  // authe.authenticationMiddleware(),
-  auth.ensureLoggedIn("/"),
-  ctrlExerciseProgram.ExerciseProgramHomePage
-);
 router.post(
   "/newExercise",
-  auth.ensureLoggedIn("/"),
+  auth,
   ctrlExerciseProgram.NewExercise
 );
 
 router.post(
   "/newExerciseProgram",
-  auth.ensureLoggedIn("/"),
+  auth,
   ctrlExerciseProgram.NewExerciseProgram
 );
 
-router.get(
-  "/specificExerciseProgram",
-  auth.ensureLoggedIn("/"),
-  ctrlExerciseProgram.ExerciseProgramSpecificPage
-);
 
 module.exports = router;

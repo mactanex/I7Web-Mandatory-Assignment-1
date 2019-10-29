@@ -6,11 +6,10 @@ var router = express.Router();
 const ctrlAccount = require("./../Controllers/accountController");
 
 /* GET home page. */
-router.get("/", ctrlAccount.loginPage);
-router.post("/login", ctrlAccount.login);
-router.get("/logout", ctrlAccount.logout);
 
-router.get("/signup", ctrlAccount.signupPage);
+router.post("/login", ctrlAccount.login);
+
+
 
 router.post("/signup", ctrlAccount.signup);
 
