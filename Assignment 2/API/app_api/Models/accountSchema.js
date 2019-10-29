@@ -6,26 +6,22 @@ const uniqueValidator = require("mongoose-unique-validator");
 const crypto = require("crypto");
 const exerciseProgramSchema = require("./exerciseProgramSchema").Schema;
 
-const accountSchema = new mongoose.Schema(
-  {
-    username: {
-      type: String,
-      lowercase: true,
-      required: [true, "kan ikke vaere tom"],
-      /* match: [/^[a-zA-Z0-9]+$/, "er ugyldig"], */
-      index: true
-    },
-    hash: String,
-    salt: String,
-    exercisePrograms: {
-      type: [exerciseProgramSchema],
-      default: []
-    }
+const accountSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    lowercase: true,
+    required: [true, "kan ikke vaere tom"],
+    index: true
   },
-  {
-    timestamps: true
+  hash: String,
+  salt: String,
+  exercisePrograms: {
+    type: [exerciseProgramSchema],
+    default: []
   }
-);
+}, {
+  timestamps: true
+});
 
 accountSchema.plugin(uniqueValidator, {
   message: "findes allerede."
@@ -48,8 +44,7 @@ accountSchema.methods.validPassword = function (password) {
 accountSchema.methods.generateJwt = function () {
   let expiry = new Date();
   expiry.setDate(expiry.getDate() + 7); // Use 1 hour for better security
-  return jwt.sign(
-    {
+  return jwt.sign({
       _id: this._id,
       email: this.username,
       name: this.username,

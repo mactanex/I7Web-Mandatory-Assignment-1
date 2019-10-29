@@ -10,6 +10,29 @@ var auth = jwt({
 const ctrlExerciseProgram = require("./../Controllers/exerciseProgramController");
 // let authe = require("./../authentication/middleware");
 
+router
+  .route("/exerciseprogram/:exerciseprogramid/exercise")
+  .get(ctrlExerciseProgram.GetAllExercises)
+  .post(auth, ctrlExerciseProgram.NewExercise);
+
+router
+  .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid")
+  .get(auth, ctrlExerciseProgram.NewExercise)
+  .delete(auth, ctrlExerciseProgram.Delete)
+  .put(auth, ctrlExerciseProgram.Put)
+
+// router
+//   .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid/activity")
+// .get(ctrlExerciseProgram.GetAllExercises)
+// .post(auth, ctrlExerciseProgram.NewExercise);
+
+// router
+//   .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid/activity/:activityid")
+// .get(auth, ctrlExerciseProgram.NewExercise)
+// .delete(auth, ctrlExerciseProgram.Delete)
+// .put(auth, ctrlExerciseProgram.Put)
+
+
 router.post(
   "/newExercise",
   auth,

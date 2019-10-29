@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
+import {
+  logSchema
+} from './logSchema';
 
 const exerciseSchema = new mongoose.Schema({
   name: String,
   description: String,
   set: Number,
-  repsOrTime: String
+  repsOrTime: String,
+  activities: [logSchema]
 });
 
 const exerciseProgramSchema = new mongoose.Schema({
