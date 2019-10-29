@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 const dbName = "I7WebAss";
 const connectionString =
-  "mongodb+srv://malthedj:RjpVcKV_xC@65Ys@mandatoryassignment1-wbxsv.azure.mongodb.net/test?retryWrites=true&w=majority";
+  "mongodb+srv://malthedj:RjpVcKV_xC@65Ys@mandatoryassignment1-wbxsv.azure.mongodb.net/assignment2?retryWrites=true&w=majority";
 dbName;
 mongoose.connect(connectionString, {
   useNewUrlParser: true

@@ -6,10 +6,9 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const db = require("./app_api/DAL/db");
-let auth = require("connect-ensure-login");
 
 const apiIndexRouter = require("./app_api/routes/index");
-const apiEexerciseRouter = require("./app_api/routes/exerciseProgram");
+const apiExerciseRouter = require("./app_api/routes/exerciseProgram");
 
 const app = express();
 const cors = require("cors");
@@ -35,7 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/", apiIndexRouter);
-app.use("/exerciseProgram", apiEexerciseRouter);
+app.use("/exerciseprogram", apiExerciseRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -45,7 +44,9 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   if (err.name === "UnauthorizedError") {
     res.status(401);
-    res.json({ message: err.name + ": " + err.message });
+    res.json({
+      message: err.name + ": " + err.message
+    });
   }
 });
 
@@ -57,7 +58,9 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.json({ message: "error" });
+  res.json({
+    message: "error"
+  });
 });
 
 const port = 3333;

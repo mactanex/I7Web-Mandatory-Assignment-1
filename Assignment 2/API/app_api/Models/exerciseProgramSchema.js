@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
-import {
-  logSchema
-} from './logSchema';
+const logSchema = require("./logSchema").logSchema;
 
 const exerciseSchema = new mongoose.Schema({
   name: String,
@@ -9,14 +7,19 @@ const exerciseSchema = new mongoose.Schema({
   set: Number,
   repsOrTime: String,
   activities: [logSchema]
+}, {
+  _id: true
 });
 
 const exerciseProgramSchema = new mongoose.Schema({
   name: String,
   exerciseProgram: {
     type: [exerciseSchema],
-    default: []
-  }
+    default: [],
+  },
+  // _id: true
+}, {
+  _id: true
 });
 
 module.exports.exerciseProgramSchema = mongoose.model(

@@ -7,19 +7,31 @@ var auth = jwt({
   secret: process.env.JWT_SECRET,
   userProperty: "payload"
 });
-const ctrlExerciseProgram = require("./../Controllers/exerciseProgramController");
+var ctrlExerciseProgram = require("./../Controllers/exerciseProgramController");
 // let authe = require("./../authentication/middleware");
 
 router
-  .route("/exerciseprogram/:exerciseprogramid/exercise")
-  .get(ctrlExerciseProgram.GetAllExercises)
-  .post(auth, ctrlExerciseProgram.NewExercise);
+  .route("/")
+  // .get(ctrlExerciseProgram.GetAllExercises)
+  .post(ctrlExerciseProgram.Put);
 
 router
-  .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid")
-  .get(auth, ctrlExerciseProgram.NewExercise)
+  .route("/:exerciseprogramid")
+  .get(auth, ctrlExerciseProgram.Get)
   .delete(auth, ctrlExerciseProgram.Delete)
   .put(auth, ctrlExerciseProgram.Put)
+
+
+// router
+//   .route("/exerciseprogram/:exerciseprogramid/exercise")
+//   .get(ctrlExerciseProgram.GetAllExercises)
+//   .post(auth, ctrlExerciseProgram.NewExercise);
+
+// router
+//   .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid")
+//   .get(auth, ctrlExerciseProgram.Get)
+//   .delete(auth, ctrlExerciseProgram.Delete)
+//   .put(auth, ctrlExerciseProgram.Put)
 
 // router
 //   .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid/activity")
@@ -33,17 +45,17 @@ router
 // .put(auth, ctrlExerciseProgram.Put)
 
 
-router.post(
-  "/newExercise",
-  auth,
-  ctrlExerciseProgram.NewExercise
-);
+// router.post(
+//   "/newExercise",
+//   auth,
+//   ctrlExerciseProgram.NewExercise
+// );
 
-router.post(
-  "/newExerciseProgram",
-  auth,
-  ctrlExerciseProgram.NewExerciseProgram
-);
+// router.post(
+//   "/newExerciseProgram",
+//   auth,
+//   ctrlExerciseProgram.NewExerciseProgram
+// );
 
 
 module.exports = router;
