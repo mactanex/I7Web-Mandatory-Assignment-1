@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div.container.text-center
+    h3 Login
+    form(method='POST' action='/login')
+      div(class='form-input')
+        b
+          label Username:
+        br
+        input#username(type='text', name='username' required)
+      div(class='form-input')
+        b 
+          label Password:
+        br
+        input(type='password', name='password' required)
+      br
+      button(type='submit' class='btn btn-primary') Login
+      br
+      br
