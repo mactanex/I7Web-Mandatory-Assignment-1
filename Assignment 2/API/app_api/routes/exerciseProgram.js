@@ -9,14 +9,15 @@ var auth = jwt({
 });
 var ctrlExerciseProgram = require("./../Controllers/exerciseProgramController");
 // let authe = require("./../authentication/middleware");
+const userMiddleware = require("../middleware/userMiddleware");
 
 router
-  .route("/")
-  // .get(ctrlExerciseProgram.GetAllExercises)
-  .post(ctrlExerciseProgram.Put);
+  .route("/exerciseprogram")
+  .get(ctrlExerciseProgram.GetAllExercisePrograms)
+  .post(userMiddleware, ctrlExerciseProgram.NewExerciseProgram);
 
 router
-  .route("/:exerciseprogramid")
+  .route("/exerciseprogram/:exerciseprogramid")
   .get(auth, ctrlExerciseProgram.Get)
   .delete(auth, ctrlExerciseProgram.Delete)
   .put(auth, ctrlExerciseProgram.Put)
