@@ -9,21 +9,21 @@ module.exports.GetAllExercisePrograms = (req, res, next) => {
   let allUsers = [];
   let allPrograms = [];
   accountSchema.User.find({}, (err, users) => {
-    if (err) {
-      console.log(err)
+    if (err || !users.length) {
+      res.status(400);
+      res.json({
+        message: `Error: ${err} - are you sure any exercise programs exist?`
+      });
     } else {
       users.forEach((user) => {
         users[user._id] = user;
       });
-      // console.log(users);
       users.forEach((user) => {
         user.exercisePrograms.forEach(ep => allPrograms.push(ep));
-        console.log(allPrograms);
-        res.status(200);
-        res.json({
-          allPrograms
-        });
-
+      });
+      res.status(200);
+      res.json({
+        allPrograms
       });
     }
   });
