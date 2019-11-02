@@ -7,7 +7,7 @@ const exerciseSchema = new mongoose.Schema({
   set: Number,
   repsOrTime: String,
   activities: [logSchema],
-}, { _id: true });
+});
 
 const exerciseProgramSchema = new mongoose.Schema({
   name: String,
@@ -16,7 +16,7 @@ const exerciseProgramSchema = new mongoose.Schema({
     default: [],
   }
 
-}, { _id: true });
+});
 
 
 module.exports.exercise = mongoose.model("Exercise", exerciseSchema);
