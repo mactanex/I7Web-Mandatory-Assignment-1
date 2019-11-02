@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 const crypto = require("crypto");
-const exerciseProgramSchema = require("./exerciseProgramSchema").Schema;
+const exerciseProgramSchema = require("./exerciseProgramSchema").exerciceProgramSchema;
 
 const accountSchema = new mongoose.Schema({
   username: {
@@ -45,11 +45,11 @@ accountSchema.methods.generateJwt = function () {
   let expiry = new Date();
   expiry.setDate(expiry.getDate() + 7); // Use 1 hour for better security
   return jwt.sign({
-      _id: this._id,
-      email: this.username,
-      name: this.username,
-      exp: parseInt(expiry.getTime() / 1000) // as Unix time in seconds 
-    },
+    _id: this._id,
+    email: this.username,
+    name: this.username,
+    exp: parseInt(expiry.getTime() / 1000) // as Unix time in seconds 
+  },
     process.env.JWT_SECRET
   ); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };
