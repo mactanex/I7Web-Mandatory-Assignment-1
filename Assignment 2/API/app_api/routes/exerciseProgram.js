@@ -18,9 +18,9 @@ router
 
 router
   .route("/exerciseprogram/:exerciseprogramid")
-  .get(auth, ctrlExerciseProgram.Get)
-  .delete(auth, ctrlExerciseProgram.Delete)
-  .put(auth, ctrlExerciseProgram.Put)
+  .get(userMiddleware, ctrlExerciseProgram.Get)
+  .delete(userMiddleware, ctrlExerciseProgram.Delete)
+  .put(userMiddleware, ctrlExerciseProgram.Put)
 
 
 // router
