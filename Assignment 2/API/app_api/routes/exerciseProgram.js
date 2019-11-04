@@ -8,13 +8,14 @@ var auth = jwt({
   userProperty: "payload"
 });
 var ctrlExerciseProgram = require("./../Controllers/exerciseProgramController");
+var ctrlExercise = require("./../Controllers/exerciseController");
 // let authe = require("./../authentication/middleware");
 const userMiddleware = require("../middleware/userMiddleware");
 
 router
   .route("/exerciseprogram")
-  .get(ctrlExerciseProgram.GetAllExercisePrograms)
-  .post(userMiddleware, ctrlExerciseProgram.NewExerciseProgram);
+  .get(ctrlExerciseProgram.GetAll)
+  .post(userMiddleware, ctrlExerciseProgram.Post);
 
 router
   .route("/exerciseprogram/:exerciseprogramid")
@@ -23,16 +24,16 @@ router
   .put(userMiddleware, ctrlExerciseProgram.Put)
 
 
-// router
-//   .route("/exerciseprogram/:exerciseprogramid/exercise")
-//   .get(ctrlExerciseProgram.GetAllExercises)
-//   .post(auth, ctrlExerciseProgram.NewExercise);
+router
+  .route("/exerciseprogram/:exerciseprogramid/exercise")
+  .get(ctrlExercise.GetAll)
+  .post(userMiddleware, ctrlExercise.Post);
 
-// router
-//   .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid")
-//   .get(auth, ctrlExerciseProgram.Get)
-//   .delete(auth, ctrlExerciseProgram.Delete)
-//   .put(auth, ctrlExerciseProgram.Put)
+router
+  .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid")
+  .get(userMiddleware, ctrlExercise.Get)
+  .delete(userMiddleware, ctrlExercise.Delete)
+  .put(userMiddleware, ctrlExercise.Put)
 
 // router
 //   .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid/activity")

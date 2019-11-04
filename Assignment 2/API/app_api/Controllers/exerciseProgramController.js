@@ -2,10 +2,10 @@
 
 var exerciseProgramSchema = require("./../Models/exerciseProgramSchema");
 var accountSchema = require("./../Models/accountSchema");
-var jwt = require("jsonwebtoken");
 
 
-module.exports.GetAllExercisePrograms = (req, res, next) => {
+
+module.exports.GetAll = (req, res, next) => {
   let allUsers = [];
   let allPrograms = [];
   accountSchema.User.find({}, (err, users) => {
@@ -31,7 +31,7 @@ module.exports.GetAllExercisePrograms = (req, res, next) => {
 }
 
 module.exports.Delete = (req, res, next) => {
-  const exerciseProgramId = req.params.exerciseProgramId;
+  const exerciseProgramId = req.params.exerciseprogramid;
 
   req.user.exercisePrograms.splice(exerciseProgramId, 1)
   req.user.save(function (err) {
@@ -52,12 +52,9 @@ module.exports.Delete = (req, res, next) => {
 }
 
 module.exports.Put = (req, res, next) => {
-  const exerciseProgramId = req.params.exerciseProgramId;
-  const exerciseProgramToUpdate = req.user.exercisePrograms.find(function (ex) {
-    return ex._id = exerciseProgramId;
-  });
-  exerciseProgramToUpdate.name = req.body.name;
-  req.user.exercisePrograms.id(exerciseProgramId) = exerciseProgramToUpdate;
+  const exerciseProgramId = req.params.exerciseprogramid;
+
+  req.user.exercisePrograms.id(exerciseProgramId).name = req.body.name;
 
   req.user.save(function (err) {
     if (err) {
@@ -76,14 +73,12 @@ module.exports.Put = (req, res, next) => {
 }
 
 module.exports.Get = (req, res, next) => {
-  const exerciseProgramId = req.params.exerciseProgramId;
-  const exerciseProgram = req.user.exercisePrograms.find(function (ex) {
-    return ex._id = exerciseProgramId;
-  });
-  if (!exerciseProgram) {
+  const exerciseProgramId = req.params.exerciseprogramid;
+  console.log(exerciseProgramId);
+  if (req.user.exercisePrograms.id(exerciseProgramId)) {
     res.status(200);
     res.json({
-      message: exerciseProgram
+      exerciseProgram: req.user.exercisePrograms.id(exerciseProgramId)
     });
   } else {
     res.status(400);
@@ -94,7 +89,7 @@ module.exports.Get = (req, res, next) => {
 }
 
 
-module.exports.NewExerciseProgram = (req, res, next) => {
+module.exports.Post = (req, res, next) => {
   const exerciseProgram = new exerciseProgramSchema.exerciseProgram({
     name: req.body.name
   })
