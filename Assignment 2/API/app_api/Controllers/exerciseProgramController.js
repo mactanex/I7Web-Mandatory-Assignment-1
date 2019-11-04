@@ -95,11 +95,9 @@ module.exports.Get = (req, res, next) => {
 
 
 module.exports.NewExerciseProgram = (req, res, next) => {
-  console.log("this is not right");
   const exerciseProgram = new exerciseProgramSchema.exerciseProgram({
     name: req.body.name
   })
-  console.log("uis");
   req.user.exercisePrograms.push(exerciseProgram);
   req.user.save(function (err) {
     if (err) {
