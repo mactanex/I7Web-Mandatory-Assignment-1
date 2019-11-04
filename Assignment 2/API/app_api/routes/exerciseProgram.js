@@ -2,14 +2,10 @@
 
 var express = require("express");
 var router = express.Router();
-var jwt = require("express-jwt");
-var auth = jwt({
-  secret: process.env.JWT_SECRET,
-  userProperty: "payload"
-});
+
 var ctrlExerciseProgram = require("./../Controllers/exerciseProgramController");
 var ctrlExercise = require("./../Controllers/exerciseController");
-// let authe = require("./../authentication/middleware");
+var ctrlActivity = require("./../Controllers/activityController");
 const userMiddleware = require("../middleware/userMiddleware");
 
 router
@@ -35,29 +31,16 @@ router
   .delete(userMiddleware, ctrlExercise.Delete)
   .put(userMiddleware, ctrlExercise.Put)
 
-// router
-//   .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid/activity")
-// .get(ctrlExerciseProgram.GetAllExercises)
-// .post(auth, ctrlExerciseProgram.NewExercise);
+router
+  .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid/activity")
+  .get(ctrlActivity.GetAll)
+  .post(userMiddleware, ctrlActivity.Post);
 
-// router
-//   .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid/activity/:activityid")
-// .get(auth, ctrlExerciseProgram.NewExercise)
-// .delete(auth, ctrlExerciseProgram.Delete)
-// .put(auth, ctrlExerciseProgram.Put)
-
-
-// router.post(
-//   "/newExercise",
-//   auth,
-//   ctrlExerciseProgram.NewExercise
-// );
-
-// router.post(
-//   "/newExerciseProgram",
-//   auth,
-//   ctrlExerciseProgram.NewExerciseProgram
-// );
+router
+  .route("/exerciseprogram/:exerciseprogramid/exercise/:exerciseid/activity/:activityid")
+  .get(userMiddleware, ctrlActivity.Get)
+  .delete(userMiddleware, ctrlActivity.Delete)
+  .put(userMiddleware, ctrlActivity.Put);
 
 
 module.exports = router;
