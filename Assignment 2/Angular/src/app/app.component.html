@@ -1,4 +1,18 @@
 <mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Mandatory assignment 2 - ExerciseWorker</span>
+    <span class="example-spacer"></span>
+    <span class="menu-item" routerLink="login"><button mat-raised-button color="accent">Login</button> </span>
+    <span class="menu-item" routerLink="signup"><button mat-raised-button color="accent">Signup</button> </span>
+
+
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="main-div">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- <mat-toolbar color="primary">
 <mat-toolbar-row>
   Mandatory 2 - ExerciseWorker
 </mat-toolbar-row>
@@ -17,4 +31,4 @@
   </mat-card-content>
 </mat-form-field>
 </form>
-</mat-card>
+</mat-card> -->

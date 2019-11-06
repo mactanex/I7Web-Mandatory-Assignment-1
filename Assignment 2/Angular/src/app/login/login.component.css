@@ -1,0 +1,16 @@
+.center-card {
+    text-align: center;
+    margin: 10px auto;
+  }
+  .center {
+    margin: 0 auto !important;
+  }
+  
+  .mat-card-header {
+    display: inline;
+  }
+  
+  .loading {
+    width: 40px !important; height: 40px !important;
+    margin: 10px auto!important;
+  }
