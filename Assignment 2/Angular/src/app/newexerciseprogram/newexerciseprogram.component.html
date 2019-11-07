@@ -1,1 +1,24 @@
-<p>newexerciseprogram works!</p>
+<div class="infocontainer">
+<h1>Welcome to the exercise program creator!</h1>
+<h2>press the button to get started!</h2>
+<button color="accent" *ngIf="!value" mat-raised-button (click)="newExercise()">Start</button>
+</div>
+<form [formGroup]="exerciseprogramForm" class="exerciseprogram-form" (ngSubmit)="addexerciseprogram()">
+<mat-form-field *ngIf="value">
+    
+    <mat-card class="container" fxLayout="row">
+        <mat-card-header>
+                <input type="text" id="exerciseprogramname" matInput placeholder="exerciseprorgamName" formControlName="name">
+        </mat-card-header>
+        <mat-card-content>
+            <input type="text" id="exercisename" placeholder="exerciseName" formControlName="exercise" matInput class="exerciseitem" fxFlex="16%"/>
+
+            <input placeholder="exerciseName" type="texarea" matInput class="exerciseitem" fxFlex="52%"/>
+
+            <input placeholder="exerciseName" type="number" matInput class="exerciseitem" fxFlex="16%"/>
+
+            <input placeholder="exerciseName" type="text" matInput class="exerciseitem" fxFlex="16%"/>
+        </mat-card-content>
+    </mat-card>
+</mat-form-field>
+</form>

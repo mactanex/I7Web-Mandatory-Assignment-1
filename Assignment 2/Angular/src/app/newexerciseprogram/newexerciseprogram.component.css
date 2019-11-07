@@ -1,0 +1,14 @@
+.infocontainer {
+    justify-content: center;
+}
+
+.container {
+    margin-top: 5%;
+    margin-left: -15%;
+    margin-right: -15%;
+}
+
+.item {
+    margin-top: 2% !important; /* important because mat-card-content first child has margin top 0% */
+    border: solid cornflowerblue 2px;
+}
