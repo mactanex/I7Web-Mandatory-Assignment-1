@@ -1,3 +1,5 @@
 export class Log {
-  activity: string;
+    id: string;
+  sets: number;
+  repsOrTime: string;
 }
