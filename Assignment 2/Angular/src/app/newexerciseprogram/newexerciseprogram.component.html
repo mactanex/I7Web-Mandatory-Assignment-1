@@ -1,24 +1,34 @@
 <div class="infocontainer">
 <h1>Welcome to the exercise program creator!</h1>
 <h2>press the button to get started!</h2>
-<button color="accent" *ngIf="!value" mat-raised-button (click)="newExercise()">Start</button>
+<button color="accent" *ngIf="!value" mat-raised-button (click)="newExerciseprogram()">Start</button>
 </div>
-<form [formGroup]="exerciseprogramForm" class="exerciseprogram-form" (ngSubmit)="addexerciseprogram()">
-<mat-form-field *ngIf="value">
+<form *ngIf="value" [formGroup]="exerciseprogramForm" class="exerciseprogram-form" (ngSubmit)="addexerciseprogram()">
+
     
-    <mat-card class="container" fxLayout="row">
+    <mat-card class="container">
         <mat-card-header>
-                <input type="text" id="exerciseprogramname" matInput placeholder="exerciseprorgamName" formControlName="name">
+                <mat-form-field  class="formcontainer">
+                <input type="text" id="exerciseprogramname" matInput placeholder="exerciseprorgamName" formControlName="name"/>
+                </mat-form-field>
         </mat-card-header>
         <mat-card-content>
-            <input type="text" id="exercisename" placeholder="exerciseName" formControlName="exercise" matInput class="exerciseitem" fxFlex="16%"/>
-
-            <input placeholder="exerciseName" type="texarea" matInput class="exerciseitem" fxFlex="52%"/>
-
-            <input placeholder="exerciseName" type="number" matInput class="exerciseitem" fxFlex="16%"/>
-
-            <input placeholder="exerciseName" type="text" matInput class="exerciseitem" fxFlex="16%"/>
+            <mat-form-field>
+            <input placeholder="exercise Name" type="text"   matInput class="exerciseitem" />
+            </mat-form-field>
+            <mat-form-field>
+            <input placeholder="exercise description" type="texarea" matInput class="exerciseitem" />
+            </mat-form-field>
+            <mat-form-field>
+            <input placeholder="exercise set" type="number" matInput class="exerciseitem" />
+            </mat-form-field>
+            <mat-form-field>
+            <input placeholder="exercise reps" type="text" matInput class="exerciseitem" />
+        </mat-form-field>
         </mat-card-content>
+        <mat-card-actions>
+        <button color="accent" mat-raised-button (click)="addExercise()">Add exercise</button>
+    </mat-card-actions>
     </mat-card>
-</mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Save!</button>
 </form>

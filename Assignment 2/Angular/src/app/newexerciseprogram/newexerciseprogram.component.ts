@@ -60,7 +60,7 @@ export class NewexerciseprogramComponent implements OnInit {
       });
    }
 
-  newExercise() {
+   newExerciseprogram() {
     this.value = true;
   }
 
