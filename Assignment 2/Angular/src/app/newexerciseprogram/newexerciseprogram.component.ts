@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators
+  Validators,
+  FormArray
 } from '@angular/forms';
 import { ExerciseErrorStateMatcher } from '../Errorhandling/ExerciseErrorStateMatcher';
 import { exerciseprogram } from '../Models/exerciseprogram';
@@ -20,18 +21,26 @@ export class NewexerciseprogramComponent implements OnInit {
   exerciseprogramForm: FormGroup;
   matcher = new ExerciseErrorStateMatcher();
   exercise = new exercise();
+  exercises: FormArray;
 
   constructor(private formBuilder: FormBuilder ) {
     // this is not viable
     this.exerciseprogramForm = this.formBuilder.group(
       {
-        name: [''],
-        exercisename: [this.exercise.name],
-        exercisedesc: [this.exercise.description],
-        exerciseset: [this.exercise.set],
-        exercisereps: [this.exercise.repsOrtime]
+        name: '',
+        exercises: this.formBuilder.array([this.createExercise() ])
       });
    }
+
+   createExercise(): FormGroup {
+     return this.formBuilder.group({
+      exercisename: '',
+      exercisedesc: '',
+      exerciseset: 0,
+      exercisereps: ''
+     });
+   }
+
 
    newExerciseprogram() {
     this.value = true;
