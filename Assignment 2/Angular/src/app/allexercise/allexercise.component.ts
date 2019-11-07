@@ -9,6 +9,8 @@ export class AllexerciseComponent implements OnInit {
 
   constructor() { }
 
+
+  // get all exerciseprograms with exercises
   ngOnInit() {
   }
 
