@@ -6,6 +6,7 @@ import {
 } from '@angular/forms';
 import { Account } from '../Models/Account';
 import { LoginErrorStateMatcher } from '../Errorhandling/LoginErrorStateMatcher';
+import { DALService } from '../services/dal.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   matcher = new LoginErrorStateMatcher();
 
-  constructor(private formBuilder: FormBuilder ) {
+  constructor(private formBuilder: FormBuilder, private dalservice: DALService ) {
     this.loginForm = this.formBuilder.group(
       {
         username: ['', [Validators.email, Validators.required]],
@@ -43,6 +44,9 @@ export class LoginComponent implements OnInit {
     this.User.password = this.loginForm.value.password;
     if (this.loginForm.invalid) {
       return;
+    } else {
+      console.log('loggedin');
+      // this.dalservice.login(this.User);
     }
   }
 

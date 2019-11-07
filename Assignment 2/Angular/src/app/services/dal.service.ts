@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Account } from '../Models/Account';
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +33,16 @@ export class DALService {
 
 
   constructor(private client: HttpClient) { }
+
+  public signup(user: Account) {
+    return this.client.post<Account>(this.signupurl, user); // jwt header ?
+  }
+
+  public login(user: Account) {
+    return this.client.post<Account>(this.loginurl, user);
+  }
+
+  public logout() {
+    return this.client.get(this.logouturl);
+  }
 }
