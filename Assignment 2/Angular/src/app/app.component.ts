@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ExerciseWorker';
+  // temp until auth is setup with API
+  loggedin = true;
 }

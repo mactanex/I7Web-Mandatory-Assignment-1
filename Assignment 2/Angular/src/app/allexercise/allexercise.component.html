@@ -1,21 +1,15 @@
-<mat-card class="container" fxLayout="column" fxLayoutWrap>
-    <mat-card class="innercards" > <!-- *ngFor="let ExerciseProgram for ExercisePrograms" -->
-        <mat-card-header class="header">
-            ExerciseProgramName
-        </mat-card-header>
-        <mat-card-content fxLayout="row">
-            <div class="item" fxFlex="16%">
-                exercisename - the screamer
-            </div>
-            <div class="item" fxFlex="52%">
-                sit up straigt and bent your knees, put your feet behind your ears and scream, repeat this
-            </div>
-            <div class="item" fxFlex="16%">
-                20 set
-            </div>
-            <div class="item" fxFlex="16%">
-                13 reps
-            </div >
-        </mat-card-content>
-    </mat-card>
-</mat-card>
+<div class="infoContainer">
+<h1>Welcome to the exerciseProgram lists!</h1>
+<h3>Here you can find all exerciseprograms you need.</h3>
+<h3>To access the details for a program please login</h3>
+</div>
+
+<mat-action-list>  
+<button mat-list-item (click)="detailstemp()">   <!-- (click)="details(ExerciseProgram.name)"  *ngFor="let ExerciseProgram for ExercisePrograms" -->
+    <h4 mat-line>ExerciseProgram.name</h4><!-- ExerciseProgram.name -->
+    <p mat-line>click to see details</p>
+</button>
+</mat-action-list>
+
+
+

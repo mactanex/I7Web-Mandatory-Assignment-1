@@ -30,9 +30,14 @@ export class NewexerciseprogramComponent implements OnInit {
 
    newExerciseprogram() {
     this.value = true;
+    this.exerciseprogramtemp.exercises.push(new exercise());
   }
 
-  addexerciseprogram() {
+  addExercise() {
+    this.exerciseprogramtemp.exercises.push(new exercise());
+  }
+
+  saveexerciseprogram() {
   console.log(this.exerciseprogramtemp);
   }
 

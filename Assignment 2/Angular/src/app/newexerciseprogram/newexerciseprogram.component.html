@@ -3,7 +3,7 @@
 <h2>press the button to get started!</h2>
 <button color="accent" *ngIf="!value" mat-raised-button (click)="newExerciseprogram()">Start</button>
 </div>
-<form *ngIf="value" [formGroup]="exerciseprogramForm" class="exerciseprogram-form" (ngSubmit)="addexerciseprogram()">
+<form *ngIf="value" [formGroup]="exerciseprogramForm" class="exerciseprogram-form" (ngSubmit)="saveexerciseprogram()">
 
     
     <mat-card class="container">
@@ -12,9 +12,10 @@
                 <input type="text" id="exerciseprogramname" matInput placeholder="exerciseprorgamName" formControlName="name"/>
                 </mat-form-field>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content >
+            <div *ngFor="let exercise of exercises"> <!--  -->
             <mat-form-field>
-            <input placeholder="exercise Name" type="text"   matInput class="exerciseitem" />
+            <input placeholder="exercise Name" type="text" formControlName="exercise.name"   matInput class="exerciseitem" />
             </mat-form-field>
             <mat-form-field>
             <input placeholder="exercise description" type="texarea" matInput class="exerciseitem" />
@@ -25,6 +26,7 @@
             <mat-form-field>
             <input placeholder="exercise reps" type="text" matInput class="exerciseitem" />
         </mat-form-field>
+    </div>
         </mat-card-content>
         <mat-card-actions>
         <button color="accent" mat-raised-button (click)="addExercise()">Add exercise</button>

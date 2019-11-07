@@ -24,6 +24,10 @@ const appRoutes: Routes = [
     component: NewexerciseprogramComponent
 },
 {
+    path: 'detailExercise/:id',
+    component: DetailexerciseprogramComponent
+},
+{
     path: 'detailExercise',
     component: DetailexerciseprogramComponent
 }
