@@ -24,7 +24,7 @@
         </p>
         <p>
           <mat-form-field appearance="outline">
-            <input id="password" matInput type="password" placeholder="Adgangskode" formControlName="password"
+            <input id="password" matInput type="password" placeholder="password" formControlName="password"
               [errorStateMatcher]="matcher" />
             <mat-hint>Password is mandatory</mat-hint>
             <mat-error *ngIf="formControls.password.hasError('required')">

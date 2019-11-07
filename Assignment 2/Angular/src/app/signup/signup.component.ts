@@ -53,12 +53,12 @@ export class SignupComponent implements OnInit {
                 }
 
                 opret() {
-                  this.User.username = this.opretForm.value.email;
+                  this.User.username = this.opretForm.value.username;
                   this.User.password = this.opretForm.value.password;
                   if (this.opretForm.invalid) {
                     return;
                   } else {
-                    console.log('signedup');
+                    console.log('loggedin ' + this.User.username + ' ' + this.User.password);
                     // this.dalservice.signup(this.User);
                   }
                 }
