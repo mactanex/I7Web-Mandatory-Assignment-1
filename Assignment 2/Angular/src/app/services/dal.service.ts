@@ -8,7 +8,7 @@ import { Account } from '../Models/Account';
 export class DALService {
 
   // exerciseprogramurls
-  private getallexerciseprogramurl = 'http://localhost:3333/exerciseprogram/GetAll'; // not sure if getall or GetAll
+  private getallexerciseprogramurl = 'http://localhost:3333/exerciseprogram/GetAll'; // to test locally , remember to remove get
   private getexerciseprogramurl = 'http://localhost:3333/exerciseprogram/:id/Get';
   private postexerciseprogramurl = 'http://localhost:3333/exerciseprogram/Post';
   private putexerciseprogramurl = 'http://localhost:3333/exerciseprogram/:id/Put';

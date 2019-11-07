@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit {
                private router: Router, private dalservice: DALService) {
                 this.opretForm = this.formBuilder.group(
                   {
-                    email: ['', [Validators.email, Validators.required]],
+                    Username: ['', [Validators.email, Validators.required]],
                     password: [
                       '',
                       [
@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
                 }
 
                 opret() {
-                  this.User.username = this.opretForm.value.username;
+                  this.User.username = this.opretForm.value.Username;
                   this.User.password = this.opretForm.value.password;
                   if (this.opretForm.invalid) {
                     return;
