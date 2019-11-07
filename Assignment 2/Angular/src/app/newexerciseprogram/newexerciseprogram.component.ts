@@ -19,12 +19,17 @@ export class NewexerciseprogramComponent implements OnInit {
   exerciseprogramtemp = new exerciseprogram();
   exerciseprogramForm: FormGroup;
   matcher = new ExerciseErrorStateMatcher();
+  exercise = new exercise();
 
   constructor(private formBuilder: FormBuilder ) {
+    // this is not viable
     this.exerciseprogramForm = this.formBuilder.group(
       {
         name: [''],
-        exercise: [exercise]
+        exercisename: [this.exercise.name],
+        exercisedesc: [this.exercise.description],
+        exerciseset: [this.exercise.set],
+        exercisereps: [this.exercise.repsOrtime]
       });
    }
 
