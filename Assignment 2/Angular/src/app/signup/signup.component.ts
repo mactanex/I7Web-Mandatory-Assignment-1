@@ -1,34 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Account } from './../Models/Account';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
-  FormGroupDirective,
-  NgForm,
   Validators
 } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
 import { Router } from '@angular/router';
-// are we using swagger, else this should just be a seperate class
-export class Account {
-  username: string;
-  password: string;
-}
+import { OpretErrorStateMatcher } from '../Errorhandling/OpretErrorStateMatcher';
 
-// might not be needed
-export class OpretErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
