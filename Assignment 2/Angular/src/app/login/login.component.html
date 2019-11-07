@@ -9,7 +9,7 @@
         <form [formGroup]="loginForm" class="login-form" (ngSubmit)="login()">
             <p>
                 <mat-form-field appearance="outline">
-                    <input id="Username"type="Username" matInput placeholder="Username" formControlName="username"
+                    <input id="Username" type="Username" matInput placeholder="Username" formControlName="username"
                         [errorStateMatcher]="matcher" />
                     <mat-hint>Username needed.</mat-hint>
                     <mat-error *ngIf="

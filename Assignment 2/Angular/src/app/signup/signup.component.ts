@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OpretErrorStateMatcher } from '../Errorhandling/OpretErrorStateMatcher';
+import { DALService } from '../services/dal.service';
 
 
 @Component({
@@ -21,10 +22,10 @@ export class SignupComponent implements OnInit {
   matcher = new OpretErrorStateMatcher();
   message = '';
   constructor( private formBuilder: FormBuilder,
-               private router: Router) {
+               private router: Router, private dalservice: DALService) {
                 this.opretForm = this.formBuilder.group(
                   {
-                    email: ['', [Validators.email, Validators.required]],
+                    Username: ['', [Validators.email, Validators.required]],
                     password: [
                       '',
                       [
@@ -52,10 +53,13 @@ export class SignupComponent implements OnInit {
                 }
 
                 opret() {
-                  this.User.username = this.opretForm.value.email;
+                  this.User.username = this.opretForm.value.Username;
                   this.User.password = this.opretForm.value.password;
                   if (this.opretForm.invalid) {
                     return;
+                  } else {
+                    console.log('loggedin ' + this.User.username + ' ' + this.User.password);
+                    // this.dalservice.signup(this.User);
                   }
                 }
 

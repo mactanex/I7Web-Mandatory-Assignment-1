@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Account } from '../Models/Account';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class DALService {
 
   // exerciseprogramurls
-  private getallexerciseprogramurl = 'http://localhost:3333/exerciseprogram/GetAll'; // not sure if getall or GetAll
+  private getallexerciseprogramurl = 'http://localhost:3333/exerciseprogram/GetAll'; // to test locally , remember to remove get
   private getexerciseprogramurl = 'http://localhost:3333/exerciseprogram/:id/Get';
   private postexerciseprogramurl = 'http://localhost:3333/exerciseprogram/Post';
   private putexerciseprogramurl = 'http://localhost:3333/exerciseprogram/:id/Put';
@@ -32,4 +33,16 @@ export class DALService {
 
 
   constructor(private client: HttpClient) { }
+
+  public signup(user: Account) {
+    return this.client.post<Account>(this.signupurl, user); // jwt header ?
+  }
+
+  public login(user: Account) {
+    return this.client.post<Account>(this.loginurl, user);
+  }
+
+  public logout() {
+    return this.client.get(this.logouturl);
+  }
 }
