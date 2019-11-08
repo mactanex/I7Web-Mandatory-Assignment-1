@@ -36,14 +36,11 @@ export class NewexerciseprogramComponent implements OnInit {
 
   newExerciseprogram() {
     this.value = true;
-    /* this.exerciseprogramtemp.exercises.push(new exercise()); */
   }
 
   addExercise() {
     this.exercises = this.exerciseprogramForm.get('exercises') as FormArray;
     this.exercises.push(this.createExercise());
-    /*  this.exerciseprogramForm.controls.exercises.value.push(this.createExercise()); */
-    /* this.exerciseprogramtemp.exercises.push(new exercise()); */
   }
 
   async saveexerciseprogram() {
@@ -62,8 +59,6 @@ export class NewexerciseprogramComponent implements OnInit {
     exercisesGenerated.forEach(x => {
       this.exerciseprogramtemp.exerciseProgram.push(x);
     });
-    // remove this console.log and replace with call to backend
-    console.log(this.exerciseprogramtemp);
     try {
       await this.exerciseProgramService.postExerciseProgram(
         this.exerciseprogramtemp
