@@ -17,17 +17,15 @@ export class DetailexerciseprogramComponent implements OnInit {
   exerciseProgramName: any;
   currentProgram: exerciseprogram;
 
-  // tslint:disable-next-line: variable-name
   constructor(
     private bottomSheet: MatBottomSheet,
     private router: Router,
     private exerciseProgramService: ExerciseProgramService
   ) {}
 
-  // exerciseno: any, exerciseprogramno: any get from list
   openActivitysheet(exerciseno: any, exerciseprogramno: any): void {
     this.bottomSheet.open(LogactivitysheetComponent, {
-      data: { ids: [exerciseprogramno.id, exerciseno.id] }
+      data: { ids: [exerciseprogramno._id, exerciseno._id] }
     });
   }
 
@@ -42,6 +40,5 @@ export class DetailexerciseprogramComponent implements OnInit {
       ep => ep.name === this.exerciseProgramName
     );
     this.currentProgram = exerciseProgram;
-    console.log(this.currentProgram);
   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ExerciseErrorStateMatcher } from '../Errorhandling/ExerciseErrorStateMatcher';
 import { exerciseprogram } from '../Models/exerciseprogram';
 import { exercise } from '../Models/exercise';
+import { ExerciseProgramService } from '../services/exercise-program.service';
 
 @Component({
   selector: 'app-newexerciseprogram',
@@ -17,7 +18,10 @@ export class NewexerciseprogramComponent implements OnInit {
   exercise = new exercise();
   exercises: FormArray;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private exerciseProgramService: ExerciseProgramService
+  ) {
     // this is not viable
   }
 
@@ -42,14 +46,31 @@ export class NewexerciseprogramComponent implements OnInit {
     /* this.exerciseprogramtemp.exercises.push(new exercise()); */
   }
 
-  saveexerciseprogram() {
+  async saveexerciseprogram() {
     this.exerciseprogramtemp.name = this.exerciseprogramForm.value.name;
     this.exercises = this.exerciseprogramForm.get('exercises') as FormArray;
-    this.exercises.controls.forEach(x => {
-      this.exerciseprogramtemp.exerciseProgram.push(x.value);
+    const exercisesGenerated = this.exercises.controls.map(c => {
+      console.log(c);
+      return new exercise(
+        c.value.exercisename,
+        c.value.exercisedesc,
+        c.value.exerciseset,
+        c.value.exercisereps
+      );
+    });
+    console.log(exercisesGenerated);
+    exercisesGenerated.forEach(x => {
+      this.exerciseprogramtemp.exerciseProgram.push(x);
     });
     // remove this console.log and replace with call to backend
     console.log(this.exerciseprogramtemp);
+    try {
+      await this.exerciseProgramService.postExerciseProgram(
+        this.exerciseprogramtemp
+      );
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   ngOnInit() {
