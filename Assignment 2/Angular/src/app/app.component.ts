@@ -12,9 +12,10 @@ export class AppComponent {
   // temp until auth is setup with API
   loggedin = false;
 
-  constructor(private router: Router, private authService: AuthenticationService) {
-
-
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService
+  ) {
     router.events.subscribe(res => {
       if (res instanceof NavigationEnd) {
         const currentUser = localStorage.getItem('currentUserToken');
@@ -24,15 +25,11 @@ export class AppComponent {
           this.loggedin = false;
         }
       }
-
     });
   }
 
   logout() {
     this.authService.logout();
     this.router.navigateByUrl('/login');
-
   }
-
-
 }

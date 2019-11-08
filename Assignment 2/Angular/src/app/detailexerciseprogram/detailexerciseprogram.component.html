@@ -1,22 +1,24 @@
 <mat-card class="container" fxLayout="column" fxLayoutWrap>
-    <mat-card class="innercards" > <!-- *ngFor="let Exercises for ExerciseProgram" -->
-        <mat-card-header class="header">
-            ExerciseProgramName
-        </mat-card-header>
-        <mat-card-content fxLayout="row">
-            <div class="item" fxFlex="12.5%">
-                exercisename - the screamer
-            </div>
-            <div class="item" fxFlex="50%">
-                sit up straigt and bent your knees, put your feet behind your ears and scream, repeat this
-            </div>
-            <div class="item" fxFlex="12.5%">
-                20 set
-            </div>
-            <div class="item" fxFlex="12.5%">
-                13 reps
-            </div>
-            <button color="primary" mat-raised-button class="item" fxFlex="12.5" (click)="openActivitysheet(exercises[i], ExerciseProgram)">Log Activity</button>
-        </mat-card-content>
-    </mat-card>
+  <mat-card class="innercards" *ngIf="currentProgram">
+    <!-- *ngFor="let Exercises for ExerciseProgram" -->
+    <mat-card-header class="header">
+      {{currentProgram.name}}
+    </mat-card-header>
+    <mat-card-content fxLayout="row" *ngFor="let exercise of currentProgram.exerciseProgram" class="card">
+      <div class="item" fxFlex="12.5%">
+        {{exercise.name}}
+      </div>
+      <div class="item" fxFlex="50%">
+        {{exercise.description}}
+      </div>
+      <div class="item" fxFlex="12.5%">
+        {{exercise.set}}
+      </div>
+      <div class="item" fxFlex="12.5%">
+        {{exercise.repsOrTime}}
+      </div>
+      <button color="primary" mat-raised-button class="item" fxFlex="12.5"
+        (click)="openActivitysheet(exercises[i], ExerciseProgram)">Log Activity</button>
+    </mat-card-content>
+  </mat-card>
 </mat-card>

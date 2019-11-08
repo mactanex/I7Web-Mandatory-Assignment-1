@@ -9,6 +9,8 @@ import { AllPrograms } from '../Models/AllPrograms';
   providedIn: 'root'
 })
 export class ExerciseProgramService {
+  public allPrograms: AllPrograms = { allPrograms: [] };
+
   // private getallexerciseprogramurl =
   //   'http://localhost:3333/exerciseprogram/GetAll'; // to test locally , remember to remove get
   // private getexerciseprogramurl =
@@ -30,9 +32,12 @@ export class ExerciseProgramService {
   public postExerciseProgram = async (ex: exerciseprogram) =>
     await this.client.post<exerciseprogram>(this.getUrl(ex), ex).toPromise()
 
-  public getAllExercisesPrograms = async () =>
-    await this.client.get<AllPrograms>(this.exerciseProgramUrl).toPromise()
-
+  public getAllExercisesPrograms = async () => {
+    this.allPrograms = await this.client
+      .get<AllPrograms>(this.exerciseProgramUrl)
+      .toPromise();
+    return this.allPrograms;
+  }
   public getExerciseProgram = async (id: string) =>
     await this.client
       .get<exerciseprogram>(this.exerciseProgramUrl + `/${id}`)
