@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Account } from 'src/app/Models/Account';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,14 @@ export class AuthenticationService {
     })
   };
 
-  constructor(private client: HttpClient) { }
+  constructor(private client: HttpClient, private router: Router) { }
 
   login(account: Account) {
     this.client.post(environment.apiBaseUrl + this.loginurl, account, this.httpOptions).subscribe(
       res => {
         localStorage.setItem('currentUserToken', JSON.stringify(res));
+
+        this.router.navigateByUrl('/allexercise');
       }, error => {
         console.log('error with logging in: ' + error);
       }

@@ -2,10 +2,20 @@
   <mat-toolbar-row>
     <span>Mandatory assignment 2 - {{title}}</span>
     <span class="example-spacer"></span>
-    <span *ngIf="loggedin" class="menu-item" routerLink="newExercise"><button mat-raised-button color="accent">Create New ExerciseProgram</button> </span>
-    <span class="menu-item" routerLink="login"><button mat-raised-button color="accent">Login</button> </span>
-    <span class="menu-item" routerLink="signup"><button mat-raised-button color="accent">Signup</button> </span>
-    <span class="menu-item" routerLink="allexercise"><button mat-raised-button color="accent">See Exerciseprograms</button></span>
+    <span *ngIf="loggedin" class="menu-item" routerLink="newExercise"><button mat-raised-button color="accent">Create
+        New ExerciseProgram</button>
+    </span>
+    <span *ngIf="loggedin" class="menu-item"><button mat-raised-button color="accent" (click)='logout()'>Log out
+      </button>
+    </span>
+
+    <span *ngIf="!loggedin" class="menu-item" routerLink="login"><button mat-raised-button color="accent">Login</button>
+    </span>
+    <span *ngIf="!loggedin" class="menu-item" routerLink="signup"><button mat-raised-button
+        color="accent">Signup</button> </span>
+
+    <span class="menu-item" routerLink="allexercise"><button mat-raised-button color="accent">See
+        Exerciseprograms</button></span>
 
   </mat-toolbar-row>
 </mat-toolbar>

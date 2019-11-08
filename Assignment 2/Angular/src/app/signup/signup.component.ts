@@ -60,6 +60,7 @@ export class SignupComponent implements OnInit {
       return;
     } else {
       this.authService.signup(this.User);
+      this.router.navigateByUrl('/login');
       // console.log('loggedin ' + this.User.username + ' ' + this.User.password);
       // this.dalservice.signup(this.User);
     }

@@ -8,6 +8,7 @@ import { Account } from '../Models/Account';
 import { LoginErrorStateMatcher } from '../Errorhandling/LoginErrorStateMatcher';
 import { DALService } from '../services/dal.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   matcher = new LoginErrorStateMatcher();
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthenticationService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthenticationService,
+    private router: Router) {
     this.User = new Account();
     this.loginForm = this.formBuilder.group(
       {
