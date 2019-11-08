@@ -1,5 +1,5 @@
 export class Log {
-    id: string;
+  id: string;
   sets: number;
   repsOrTime: string;
 }
