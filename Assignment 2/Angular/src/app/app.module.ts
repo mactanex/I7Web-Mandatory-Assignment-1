@@ -4,15 +4,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/Material/Material.module';
+
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AllexerciseComponent } from './allexercise/allexercise.component';
 import { NewexerciseprogramComponent } from './newexerciseprogram/newexerciseprogram.component';
 import { DetailexerciseprogramComponent } from './detailexerciseprogram/detailexerciseprogram.component';
+import { LogactivitysheetComponent } from './logactivitysheet/logactivitysheet.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { DetailexerciseprogramComponent } from './detailexerciseprogram/detailex
     SignupComponent,
     AllexerciseComponent,
     NewexerciseprogramComponent,
-    DetailexerciseprogramComponent
+    DetailexerciseprogramComponent,
+    LogactivitysheetComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,9 @@ import { DetailexerciseprogramComponent } from './detailexerciseprogram/detailex
     FlexLayoutModule,
     AppRoutingModule,
     HttpClientModule
+  ],
+  entryComponents: [
+    LogactivitysheetComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
