@@ -20,7 +20,6 @@ import { JwtInterceptor } from './_Helpers/jwt.interceptor';
 
 import { LogactivitysheetComponent } from './logactivitysheet/logactivitysheet.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,13 +40,15 @@ import { LogactivitysheetComponent } from './logactivitysheet/logactivitysheet.c
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true,
-  }],
-
-  entryComponents: [
-    LogactivitysheetComponent
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ],
+
+  entryComponents: [LogactivitysheetComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

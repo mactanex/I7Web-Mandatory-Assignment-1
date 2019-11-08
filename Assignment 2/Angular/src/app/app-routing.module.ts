@@ -8,41 +8,40 @@ import { DetailexerciseprogramComponent } from './detailexerciseprogram/detailex
 import { AuthGuard } from './_Helpers/auth.guard';
 
 const appRoutes: Routes = [
-    {
-        path: 'login',
-        component: LoginComponent,
-    },
-    {
-        path: 'signup',
-        component: SignupComponent
-    },
-    {
-        path: 'allexercise',
-        component: AllexerciseComponent
-    },
-    {
-        path: 'newExercise',
-        canActivate: [AuthGuard],
-        component: NewexerciseprogramComponent
-    },
-    {
-        path: 'detailExercise/:id',
-        canActivate: [AuthGuard],
-        component: DetailexerciseprogramComponent
-    },
-    {
-        path: 'detailExercise',
-        canActivate: [AuthGuard],
-        component: DetailexerciseprogramComponent
-    }
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
+  },
+  {
+    path: 'allexercise',
+    component: AllexerciseComponent
+  },
+  {
+    path: 'newExercise',
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always',
+    component: NewexerciseprogramComponent
+  },
+  {
+    path: 'detailExercise/:id',
+    canActivate: [AuthGuard],
+    component: DetailexerciseprogramComponent,
+    runGuardsAndResolvers: 'always'
+  },
+  {
+    path: 'detailExercise',
+    canActivate: [AuthGuard],
+    component: DetailexerciseprogramComponent,
+    runGuardsAndResolvers: 'always'
+  }
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(appRoutes)
-    ],
-    exports: [
-        RouterModule
-    ]
+  imports: [RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' })],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
