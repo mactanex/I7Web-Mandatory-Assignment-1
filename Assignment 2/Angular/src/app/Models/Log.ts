@@ -1,5 +1,5 @@
 export class Log {
-  constructor(sets?: number, repsOrTime?: string) {
+  constructor(set?: number, repsOrTime?: string) {
     this.set = set;
     this.repsOrTime = repsOrTime;
   }
