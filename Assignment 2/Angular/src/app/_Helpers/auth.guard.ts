@@ -10,8 +10,8 @@ export class AuthGuard implements CanActivate, CanLoad {
     constructor(private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const currentUser = localStorage.GetItem('currentUserToken');
-        if (currentUser.Exsists()) {
+        const currentUser = JSON.parse(localStorage.getItem('currentUserToken'));
+        if (currentUser.token) {
             // logged in so return true
             return true;
         }

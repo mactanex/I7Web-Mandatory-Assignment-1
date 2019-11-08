@@ -7,6 +7,7 @@ import {
 import { Account } from '../Models/Account';
 import { LoginErrorStateMatcher } from '../Errorhandling/LoginErrorStateMatcher';
 import { DALService } from '../services/dal.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   matcher = new LoginErrorStateMatcher();
 
-  constructor(private formBuilder: FormBuilder, private dalservice: DALService ) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthenticationService) {
     this.User = new Account();
     this.loginForm = this.formBuilder.group(
       {
@@ -46,7 +47,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     } else {
-      console.log('loggedin ' + this.User.username + ' ' + this.User.password);
+      // console.log('loggedin ' + this.User.username + ' ' + this.User.password);
+      this.authService.login(this.User);
       // this.dalservice.login(this.User);
     }
   }

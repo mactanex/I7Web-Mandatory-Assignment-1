@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AllexerciseComponent } from './allexercise/allexercise.component';
 import { NewexerciseprogramComponent } from './newexerciseprogram/newexerciseprogram.component';
 import { DetailexerciseprogramComponent } from './detailexerciseprogram/detailexerciseprogram.component';
+import { JwtInterceptor } from './_Helpers/jwt.interceptor';
 
 
 @NgModule({
@@ -34,7 +35,9 @@ import { DetailexerciseprogramComponent } from './detailexerciseprogram/detailex
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
