@@ -18,11 +18,6 @@ export class DALService {
     'http://localhost:3333/exerciseprogram/:id/Put';
   private deleteexerciseprogramurl =
     'http://localhost:3333/exerciseprogram/:id/Delete';
-  // userurls
-  private loginurl = 'http://localhost:3333/login';
-  private signupurl = 'http://localhost:3333/signup';
-  // api/get
-  private logouturl = 'http://localhost:3333/logout';
   // exerciseurls
   private getallexerciseurl =
     'http://localhost:3333/exerciseprogram/:id/exercise/GetAll';
