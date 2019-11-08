@@ -19,7 +19,8 @@ import {
   MatIconModule,
   MatGridListModule,
   MatStepperModule,
-  MatListModule
+  MatListModule,
+  MatBottomSheetModule
 } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -47,7 +48,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule,
     MatIconModule,
     MatStepperModule,
-    MatListModule
+    MatListModule,
+    MatBottomSheetModule
   ],
   exports: [
     MatSliderModule,
@@ -69,7 +71,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule,
     MatIconModule,
     MatStepperModule,
-    MatListModule
+    MatListModule,
+    MatBottomSheetModule
   ]
 })
 export class MaterialModule { }

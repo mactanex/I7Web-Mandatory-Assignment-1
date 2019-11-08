@@ -1,0 +1,11 @@
+<mat-list>
+    <div mat-list-item>
+<input #set (blur)="updateset(set.value)" type="text"  matInput placeholder="Sets" />
+</div>
+<div mat-list-item>
+<input #reps (blur)="updatereps(reps.value)" type="text" matInput placeholder="Repsortime" />
+</div>
+<div mat-list-item>
+<button color="primary"  mat-raised-button (click)="saveactivity()">Save</button>
+</div>
+</mat-list>
