@@ -25,7 +25,12 @@ export class DetailexerciseprogramComponent implements OnInit {
 
   openActivitysheet(exerciseno: any, exerciseprogramno: any): void {
     this.bottomSheet.open(LogactivitysheetComponent, {
-      data: { ids: [exerciseprogramno._id, exerciseno._id] }
+      data: {
+        ids: {
+          exerciseprogramid: exerciseprogramno._id,
+          exerciseid: exerciseno._id
+        }
+      }
     });
   }
 

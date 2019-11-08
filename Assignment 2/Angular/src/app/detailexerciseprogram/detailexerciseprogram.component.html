@@ -17,6 +17,10 @@
       <div class="item" fxFlex="12.5%">
         {{exercise.repsOrTime}}
       </div>
+      <div class="item" fxFlex="12.5%">
+        <p *ngFor="let activity of exercise.activities"> {{activity.repsOrTime}}
+        </p>
+      </div>
       <button color="primary" mat-raised-button class="item" fxFlex="12.5"
         (click)="openActivitysheet(exercise, currentProgram)">Log Activity</button>
     </mat-card-content>

@@ -22,7 +22,7 @@ export class ActivityService {
   private exerciseUrl = environment.apiBaseUrl + 'exerciseprogram';
 
   getUrl = (exerciseProgramId: string, exerciseId: string) =>
-    this.exerciseUrl + `/${exerciseProgramId}/exercise/${exerciseId}`
+    this.exerciseUrl + `/${exerciseProgramId}/exercise/${exerciseId}/activity`
 
   public postActivity = async (
     exerciseProgramId: string,
