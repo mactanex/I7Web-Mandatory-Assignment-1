@@ -19,6 +19,7 @@ import { DetailexerciseprogramComponent } from './detailexerciseprogram/detailex
 import { JwtInterceptor } from './_Helpers/jwt.interceptor';
 
 import { LogactivitysheetComponent } from './logactivitysheet/logactivitysheet.component';
+import { NoCacheHeadersInterceptor } from './_Helpers/no-cache-intercepter.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,11 @@ import { LogactivitysheetComponent } from './logactivitysheet/logactivitysheet.c
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NoCacheHeadersInterceptor,
       multi: true
     }
   ],

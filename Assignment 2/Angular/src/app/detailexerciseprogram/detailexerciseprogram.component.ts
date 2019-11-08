@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { MatBottomSheet } from '@angular/material';
 import { LogactivitysheetComponent } from '../logactivitysheet/logactivitysheet.component';
 import { exerciseprogram } from '../Models/exerciseprogram';
@@ -18,7 +18,8 @@ export class DetailexerciseprogramComponent implements OnInit, OnDestroy {
   constructor(
     private bottomSheet: MatBottomSheet,
     private router: Router,
-    private exerciseProgramService: ExerciseProgramService
+    private exerciseProgramService: ExerciseProgramService,
+    private cdr: ChangeDetectorRef
   ) {}
   exerciseProgramName: any;
   currentProgram: exerciseprogram;
@@ -42,34 +43,18 @@ export class DetailexerciseprogramComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     await this._init();
-    this.navigationSubscription = this.router.events.subscribe(
-      async (e: any) => {
-        // If it is a NavigationEnd event re-initalise the component
-        if (e instanceof NavigationEnd) {
-          await this._init(false);
-        }
-      }
-    );
   }
 
-  private async _init(firstLoad = true) {
-    const programNameFromUrl = (last(
+  private async _init() {
+    const programNameFromUrl = last(
       this.router.url.split('/')
-    ) as string).split('%')[0];
+    );
 
-    // console.log(programNameFromUrl);
-
-    if (firstLoad) {
-      if (!this.exerciseProgramService.allPrograms.allPrograms.length) {
-        await this.exerciseProgramService.getAllExercisesPrograms();
-      }
-    } else {
-      this.currentProgram.exerciseProgram = [];
-      this.currentProgram = null;
+    if (!this.exerciseProgramService.allPrograms.allPrograms.length) {
       await this.exerciseProgramService.getAllExercisesPrograms();
     }
-
-    this.exerciseProgramName = decodeURIComponent(programNameFromUrl);
+ 
+    this.exerciseProgramName = decodeURIComponent(programNameFromUrl as string);
     const exerciseProgram = this.exerciseProgramService.allPrograms.allPrograms.find(
       ep => ep.name === this.exerciseProgramName
     );

@@ -33,28 +33,28 @@ export class LogactivitysheetComponent implements OnInit {
     const newLog = new Log(parseInt(this.sets), this.reps);
     // console.log(this.sets + ' ' + this.reps);
     // call service to add this to activity
+    this.bottomSheetRef.dismiss();
     await this.activityService.postActivity(
       this.data.ids.exerciseprogramid,
       this.data.ids.exerciseid,
       newLog
     );
-    this.bottomSheetRef.dismiss();
-    this.redirectTo(this.router.url);
+    // await this.redirectTo(this.router.url);
   }
 
   // In an attempt to force refresh the component when adding activity...
-  redirectTo(uri: string) {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([uri], { queryParams: { refresh: 1 } });
-    });
-  }
+  // redirectTo(uri: string) {
+  //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+  //     this.router.navigate([uri], { queryParams: { refresh: 1 } });
+  //   });
+  // }
 
   // In an attempt to force refresh the component when adding activity...
-  randomParam = () =>
-    '_' +
-    Math.random()
-      .toString(36)
-      .substr(2, 9)
+  // randomParam = () =>
+  //   '_' +
+  //   Math.random()
+  //     .toString(36)
+  //     .substr(2, 9)
 
   ngOnInit() {}
 }
