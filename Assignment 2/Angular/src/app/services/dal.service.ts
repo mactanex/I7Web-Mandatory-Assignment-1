@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Account } from '../Models/Account';
+import { exercise } from '../Models/exercise';
+import { environment } from 'ExerciseWorker/src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +47,23 @@ export class DALService {
     'http://localhost:3333/exerciseprogram/:id/exercise/:id/activity/:id/delete';
 
   constructor(private client: HttpClient) {}
+
+  public post<T>(object: T) {
+    return this.client.post<T>(this.getUrl<T>(object), object);
+  }
+
+  public get<T>(object: T) {
+    return this.client.get<T>(this.getUrl<T>(object), object);
+  }
+
+  getUrl<T>(object: T): string {
+    switch (object.constructor) {
+      case exercise:
+        return environment.api;
+      default:
+        break;
+    }
+  }
 
   public signup(user: Account) {
     return this.client.post<Account>(this.signupurl, user); // jwt header ?
