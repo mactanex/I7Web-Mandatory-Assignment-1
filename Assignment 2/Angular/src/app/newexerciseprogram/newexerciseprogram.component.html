@@ -13,8 +13,9 @@
                 </mat-form-field>
         </mat-card-header>
         <mat-card-content style="justify-content: center;"  >
-            <div formArrayName="exercises" *ngFor="let exercise of exerciseprogramForm.get('exercises').controls; let i = index;">
-            <mat-form-field>
+            <div formArrayName="exercises" *ngFor="let exercise of exerciseprogramForm.get('exercises').controls; let i = index">
+            <div [formGroupName]="i">
+                <mat-form-field>
             <input placeholder="exercise Name"  type="text" formControlName="exercisename"   matInput class="exerciseitem" />
             </mat-form-field>
             <mat-form-field>
@@ -27,9 +28,10 @@
             <input placeholder="exercise reps" type="text" formControlName="exercisereps" matInput class="exerciseitem"  />
         </mat-form-field>
     </div>
+    </div>
         </mat-card-content>
         <mat-card-actions>
-        <button color="accent" mat-raised-button (click)="addExercise()">Add exercise</button>
+        <button color="accent" type="button" mat-raised-button (click)="addExercise()">Add exercise</button>
     </mat-card-actions>
     </mat-card>
     <button type="submit" mat-raised-button color="primary">Save!</button>
