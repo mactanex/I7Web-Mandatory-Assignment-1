@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from './../Models/Account';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OpretErrorStateMatcher } from '../Errorhandling/OpretErrorStateMatcher';
 import { DALService } from '../services/dal.service';
 import { AuthenticationService } from '../services/authentication.service';
-
 
 @Component({
   selector: 'app-signup',
@@ -22,8 +17,11 @@ export class SignupComponent implements OnInit {
 
   matcher = new OpretErrorStateMatcher();
   message = '';
-  constructor(private formBuilder: FormBuilder,
-    private router: Router, private authService: AuthenticationService, ) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthenticationService
+  ) {
     this.opretForm = this.formBuilder.group(
       {
         Username: ['', [Validators.email, Validators.required]],
@@ -73,7 +71,5 @@ export class SignupComponent implements OnInit {
 
     return pass === confirmPass ? null : { notSame: true };
   }
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

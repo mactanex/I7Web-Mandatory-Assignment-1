@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { exerciseprogram } from '../Models/exerciseprogram';
 import { Router } from '@angular/router';
+import { ExerciseProgramService } from '../services/exercise-program.service';
+import { AllPrograms } from './AllPrograms';
 
 @Component({
   selector: 'app-allexercise',
@@ -8,19 +9,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./allexercise.component.css']
 })
 export class AllexerciseComponent implements OnInit {
-  ExercisePrograms: Array<exerciseprogram>;
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private exerciseProgramService: ExerciseProgramService
+  ) {}
+
+  allPrograms: AllPrograms = { allPrograms: [] };
 
   details(id: string) {
     this.router.navigateByUrl('detailExercise/' + id);
   }
 
-detailstemp() {
-  this.router.navigateByUrl('detailExercise');
-}
-
-  // get all exerciseprograms with exercises
-  ngOnInit() {
+  detailstemp() {
+    this.router.navigateByUrl('detailExercise');
   }
 
+  // get all exerciseprograms with exercises
+  async ngOnInit() {
+    console.log(this.allPrograms);
+    this.allPrograms = await this.exerciseProgramService.getAllExercisesPrograms();
+    console.log(this.allPrograms);
+  }
 }

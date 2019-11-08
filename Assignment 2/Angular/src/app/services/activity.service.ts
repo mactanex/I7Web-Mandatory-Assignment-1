@@ -38,7 +38,7 @@ export class ActivityService {
     exerciseId: string
   ) =>
     await this.client
-      .get<Log>(this.getUrl(exerciseProgramId, exerciseId))
+      .get<Log[]>(this.getUrl(exerciseProgramId, exerciseId))
       .toPromise()
 
   public getActivity = async (

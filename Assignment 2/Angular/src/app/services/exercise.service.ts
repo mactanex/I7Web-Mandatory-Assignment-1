@@ -30,7 +30,9 @@ export class ExerciseService {
       .toPromise()
 
   public getAllExercises = async (exerciseProgramId: string) =>
-    await this.client.get<exercise>(this.getUrl(exerciseProgramId)).toPromise()
+    await this.client
+      .get<exercise[]>(this.getUrl(exerciseProgramId))
+      .toPromise()
 
   public getExercise = async (exerciseProgramId: string, id: string) =>
     await this.client

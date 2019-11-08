@@ -1,15 +1,14 @@
 <div class="infoContainer">
-<h1>Welcome to the exerciseProgram lists!</h1>
-<h3>Here you can find all exerciseprograms you need.</h3>
-<h3>To access the details for a program please login</h3>
+  <h1>Welcome to the exerciseProgram lists!</h1>
+  <h3>Here you can find all exerciseprograms you need.</h3>
+  <h3>To access the details for a program please login</h3>
 </div>
 
-<mat-action-list>  
-<button mat-list-item (click)="detailstemp()">   <!-- (click)="details(ExerciseProgram.name)"  *ngFor="let ExerciseProgram for ExercisePrograms" -->
-    <h4 mat-line>ExerciseProgram.name</h4><!-- ExerciseProgram.name -->
-    <p mat-line>click to see details</p>
-</button>
+<mat-action-list>
+  <div *ngFor="let exerciseProgram of allPrograms.allPrograms">
+    <button mat-list-item (click)="details(exerciseProgram.name)">
+      <h4 mat-line>{{exerciseProgram.name}}</h4><!-- ExerciseProgram.name -->
+      <p class="btn-label" mat-line>Click to see details</p>
+    </button>
+  </div>
 </mat-action-list>
-
-
-

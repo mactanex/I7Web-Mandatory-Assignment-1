@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { exercise } from '../Models/exercise';
 import { environment } from 'src/environments/environment';
 import { exerciseprogram } from '../Models/exerciseprogram';
+import { AllPrograms } from '../allexercise/AllPrograms';
 
 @Injectable({
   providedIn: 'root'
@@ -26,23 +27,23 @@ export class ExerciseProgramService {
   }
 
   constructor(private client: HttpClient) {}
-  public postExercise = async (ex: exerciseprogram) =>
+  public postExerciseProgram = async (ex: exerciseprogram) =>
     await this.client.post<exerciseprogram>(this.getUrl(ex), ex).toPromise()
 
-  public getAllExercises = async () =>
-    await this.client.get<exerciseprogram>(this.exerciseProgramUrl).toPromise()
+  public getAllExercisesPrograms = async () =>
+    await this.client.get<AllPrograms>(this.exerciseProgramUrl).toPromise()
 
-  public getExercise = async (id: string) =>
+  public getExerciseProgram = async (id: string) =>
     await this.client
       .get<exerciseprogram>(this.exerciseProgramUrl + `/${id}`)
       .toPromise()
 
-  public putExercise = async (ex: exerciseprogram) =>
+  public putExerciseProgram = async (ex: exerciseprogram) =>
     await this.client
       .put<exerciseprogram>(this.exerciseProgramUrl + `/${ex.id}`, ex)
       .toPromise()
 
-  public deleteExercise = async (id: string) =>
+  public deleteExerciseProgram = async (id: string) =>
     await this.client
       .delete<exerciseprogram>(this.exerciseProgramUrl + `/${id}`)
       .toPromise()
