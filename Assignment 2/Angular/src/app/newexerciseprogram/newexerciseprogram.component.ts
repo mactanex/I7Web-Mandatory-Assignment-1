@@ -49,16 +49,16 @@ export class NewexerciseprogramComponent implements OnInit {
   async saveexerciseprogram() {
     this.exerciseprogramtemp.name = this.exerciseprogramForm.value.name;
     this.exercises = this.exerciseprogramForm.get('exercises') as FormArray;
-    const exercisesGenerated = this.exercises.controls.map(c => {
-      console.log(c);
-      return new exercise(
-        c.value.exercisename,
-        c.value.exercisedesc,
-        c.value.exerciseset,
-        c.value.exercisereps
-      );
-    });
-    console.log(exercisesGenerated);
+    const exercisesGenerated = this.exercises.controls.map(
+      c =>
+        new exercise(
+          c.value.exercisename,
+          c.value.exercisedesc,
+          c.value.exerciseset,
+          c.value.exercisereps
+        )
+    );
+    // console.log(exercisesGenerated);
     exercisesGenerated.forEach(x => {
       this.exerciseprogramtemp.exerciseProgram.push(x);
     });

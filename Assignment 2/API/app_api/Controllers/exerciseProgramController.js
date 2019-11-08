@@ -91,7 +91,8 @@ module.exports.Get = (req, res, next) => {
 
 module.exports.Post = (req, res, next) => {
   const exerciseProgram = new exerciseProgramSchema.exerciseProgram({
-    name: req.body.name
+    name: req.body.name,
+    exerciseProgram: req.body.exerciseProgram
   })
   req.user.exercisePrograms.push(exerciseProgram);
   req.user.save(function (err) {
