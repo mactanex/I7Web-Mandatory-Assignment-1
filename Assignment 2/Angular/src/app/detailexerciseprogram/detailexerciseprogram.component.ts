@@ -19,14 +19,14 @@ export class DetailexerciseprogramComponent implements OnInit {
 
   // tslint:disable-next-line: variable-name
   constructor(
-    private _bottomSheet: MatBottomSheet,
+    private bottomSheet: MatBottomSheet,
     private router: Router,
     private exerciseProgramService: ExerciseProgramService
   ) {}
 
   // exerciseno: any, exerciseprogramno: any get from list
   openActivitysheet(exerciseno: any, exerciseprogramno: any): void {
-    this._bottomSheet.open(LogactivitysheetComponent, {
+    this.bottomSheet.open(LogactivitysheetComponent, {
       data: { ids: [exerciseprogramno.id, exerciseno.id] }
     });
   }
