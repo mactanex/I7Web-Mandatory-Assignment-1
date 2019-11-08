@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { exercise } from '../Models/exercise';
 import { environment } from 'src/environments/environment';
 import { exerciseprogram } from '../Models/exerciseprogram';
-import { AllPrograms } from '../allexercise/AllPrograms';
+import { AllPrograms } from '../Models/AllPrograms';
 
 @Injectable({
   providedIn: 'root'

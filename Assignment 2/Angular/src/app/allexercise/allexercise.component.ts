@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ExerciseProgramService } from '../services/exercise-program.service';
-import { AllPrograms } from './AllPrograms';
+import { AllPrograms } from '../Models/AllPrograms';
 
 @Component({
   selector: 'app-allexercise',

@@ -1,4 +1,4 @@
-import { exerciseprogram } from '../Models/exerciseprogram';
+import { exerciseprogram } from './exerciseprogram';
 export interface AllPrograms {
   allPrograms: exerciseprogram[];
 }
