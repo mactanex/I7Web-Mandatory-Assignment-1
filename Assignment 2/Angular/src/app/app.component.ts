@@ -18,12 +18,7 @@ export class AppComponent {
   ) {
     router.events.subscribe(res => {
       if (res instanceof NavigationEnd) {
-        const currentUser = localStorage.getItem('currentUserToken');
-        if (currentUser) {
-          this.loggedin = true;
-        } else {
-          this.loggedin = false;
-        }
+        this.loggedin = authService.loggedIn();
       }
     });
   }

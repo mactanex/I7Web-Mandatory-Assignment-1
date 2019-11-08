@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ExerciseProgramService } from '../services/exercise-program.service';
 import { AllPrograms } from '../Models/AllPrograms';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-allexercise',
@@ -11,7 +12,8 @@ import { AllPrograms } from '../Models/AllPrograms';
 export class AllexerciseComponent implements OnInit {
   constructor(
     private router: Router,
-    private exerciseProgramService: ExerciseProgramService
+    private exerciseProgramService: ExerciseProgramService,
+    public authService: AuthenticationService
   ) {}
 
   // tslint:disable-next-line:max-line-length
