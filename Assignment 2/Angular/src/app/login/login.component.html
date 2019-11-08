@@ -16,7 +16,7 @@
                 formControls.username.hasError('username') &&
                 !formControls.username.hasError('required')
               ">
-                        
+              Username must have @ and .something
                     </mat-error>
                     <mat-error *ngIf="formControls.username.hasError('required')">
                         Username is <strong>mandatory</strong>
@@ -34,7 +34,7 @@
               formControls.password.hasError('pattern') &&
               !formControls.password.hasError('required')
             ">
-                    Passwords needs...
+            Password must a capitol letter, 8 characters, a number and a special character @$!%*?&
                 </mat-error>
             </mat-form-field>
             <br />
