@@ -2,7 +2,10 @@
   <mat-card class="innercards" *ngIf="currentProgram">
     <!-- *ngFor="let Exercises for ExerciseProgram" -->
     <mat-card-header class="header">
-      {{currentProgram.name}}
+      <div>
+        <h3 class="subheader">Viewing details for exercise:</h3>
+        <h1>{{currentProgram.name}}</h1>
+      </div>
     </mat-card-header>
     <mat-card-content fxLayout="row" *ngFor="let exercise of currentProgram.exerciseProgram" class="card">
       <div class="item" fxFlex="12.5%">
