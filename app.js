@@ -67,8 +67,8 @@ app.use(function (err, req, res, next) {
   });
 });
 
-const port = 80;
+/*const port = 80;
 
 app.listen(port, () => console.log(`Mandatory assignment 2 listening on port ${port}!`));
-
+*/
 module.exports = app;
