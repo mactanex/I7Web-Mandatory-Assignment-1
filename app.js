@@ -30,13 +30,13 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "dist/ExerciseWorker")));
 app.use(cors());
 
 app.use("/api", apiIndexRouter);
 app.use("/api", apiExerciseRouter);
 app.get("*", (req, res) => {
-  res.sendFile("dist/ExerciseWorker/index.html", {root: __dirname});
+  res.sendFile("dist/ExerciseWorker/index.html", { root: __dirname });
 })
 
 // catch 404 and forward to error handler
@@ -67,8 +67,8 @@ app.use(function (err, req, res, next) {
   });
 });
 
-/* const port = 3333;
+const port = 3333;
 
-app.listen(port, () => console.log(`Mandatory assignment 2 listening on port ${port}!`)); */
+app.listen(port, () => console.log(`Mandatory assignment 2 listening on port ${port}!`));
 
 module.exports = app;
