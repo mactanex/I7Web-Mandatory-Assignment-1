@@ -23,6 +23,7 @@ import { NoCacheHeadersInterceptor } from './_Helpers/no-cache-intercepter.servi
 import { FrontPageComponent } from './front-page/front-page.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FooterComponent } from './footer/footer.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FooterComponent } from './footer/footer.component';
     DetailexerciseprogramComponent,
     LogactivitysheetComponent,
     FrontPageComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

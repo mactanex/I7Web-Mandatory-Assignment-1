@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { Log } from '../Models/Log';
 import { HttpClient } from '@angular/common/http';
 import { IsLoadingService } from '@service-work/is-loading';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { IsLoadingService } from '@service-work/is-loading';
 export class ActivityService {
   constructor(
     private client: HttpClient,
-    private loadingService: IsLoadingService
+    private loadingService: IsLoadingService,
+    private snackbar: SnackbarService
   ) {}
 
   // private getallactivities =
@@ -36,7 +38,8 @@ export class ActivityService {
     await this.loadingService.add(
       this.client
         .post<Log>(this.getUrl(exerciseProgramId, exerciseId), activity)
-        .toPromise()
+        .toPromise().then(() => {this.snackbar.openSuccessSnackBar('posted log to exercise');
+      })
     )
 
   public getAllActivities = async (
@@ -46,7 +49,9 @@ export class ActivityService {
     await this.loadingService.add(
       this.client
         .get<Log[]>(this.getUrl(exerciseProgramId, exerciseId))
-        .toPromise()
+        .toPromise().catch(err => {
+          this.snackbar.openFailureSnackBar('failed to get logs' + err);
+        })
     )
 
   public getActivity = async (

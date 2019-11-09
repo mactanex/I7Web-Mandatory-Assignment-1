@@ -3,7 +3,6 @@ import { Account } from './../Models/Account';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OpretErrorStateMatcher } from '../Errorhandling/OpretErrorStateMatcher';
-import { DALService } from '../services/dal.service';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({

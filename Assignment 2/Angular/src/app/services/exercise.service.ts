@@ -14,16 +14,6 @@ export class ExerciseService {
   ) {}
   private exerciseUrl = environment.apiBaseUrl + 'exerciseprogram';
 
-  // private getallexerciseurl =
-  //   'http://localhost:3333/exerciseprogram/:id/exercise/GetAll';
-  // private getexerciseurl =
-  //   'http://localhost:3333/exerciseprogram/:id/exercise/:id/Get';
-  // private postexerciseurl =
-  //   'http://localhost:3333/exerciseprogram/:id/exercise/Post';
-  // private putexerciseurl =
-  //   'http://localhost:3333/exerciseprogram/:id/exercise/:id/Put';
-  // private deleteexerciseurl =
-  //   'http://localhost:3333/exerciseprogram/:id/exercise/:id/Delete';
 
   getUrl = (exerciseProgramId: string) =>
     this.exerciseUrl + `/${exerciseProgramId}/exercise`

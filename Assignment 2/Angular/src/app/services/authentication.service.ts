@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Account } from 'src/app/Models/Account';
 import { Router } from '@angular/router';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private client: HttpClient, private router: Router) {}
+  constructor(private client: HttpClient, private router: Router, private snackbar: SnackbarService) {}
   // userurls
   private loginurl = 'login';
   private signupurl = 'signup';
@@ -33,7 +34,8 @@ export class AuthenticationService {
           this.router.navigateByUrl('/allexercise');
         },
         error => {
-          console.log('error with logging in: ' + error);
+          console.log('error with logging in: ' + error.status);
+          this.snackbar.openFailureSnackBar('error with logging in: ' + error.status);
         }
       );
   }
@@ -45,7 +47,8 @@ export class AuthenticationService {
       .subscribe(
         res => console.log(res),
         error => {
-          console.log('error with signing up ' + error);
+          console.log('error with signing up ' + error.status);
+          this.snackbar.openFailureSnackBar('error with signing in: ' + error.status);
         }
       );
   }

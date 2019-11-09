@@ -7,10 +7,10 @@ import { NewexerciseprogramComponent } from './newexerciseprogram/newexercisepro
 import { DetailexerciseprogramComponent } from './detailexerciseprogram/detailexerciseprogram.component';
 import { AuthGuard } from './_Helpers/auth.guard';
 import { FrontPageComponent } from './front-page/front-page.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const appRoutes: Routes = [
   { path: '', component: FrontPageComponent, pathMatch: 'full' },
-
   {
     path: 'login',
     component: LoginComponent
@@ -36,10 +36,9 @@ const appRoutes: Routes = [
     runGuardsAndResolvers: 'always'
   },
   {
-    path: 'detailExercise',
-    canActivate: [AuthGuard],
-    component: DetailexerciseprogramComponent,
-    runGuardsAndResolvers: 'always'
+      path: '**',
+      component: NotFoundComponent,
+      runGuardsAndResolvers: 'always'
   }
 ];
 

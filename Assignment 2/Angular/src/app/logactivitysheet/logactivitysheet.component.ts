@@ -3,6 +3,7 @@ import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
 import { ActivityService } from '../services/activity.service';
 import { Log } from '../Models/Log';
 import { Router } from '@angular/router';
+import { ExerciseProgramService } from '../services/exercise-program.service';
 
 @Component({
   selector: 'app-logactivitysheet',
@@ -46,6 +47,7 @@ export class LogactivitysheetComponent implements OnInit {
       this.data.ids.exerciseid,
       newLog
     );
+    this.router.navigateByUrl('allexercise');
     // await this.redirectTo(this.router.url);
   }
 
