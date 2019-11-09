@@ -15,10 +15,19 @@ module.exports.login = (req, res, next) => {
         message: "error: " + err || `wrong username or password provided: ${req.body.username}...`
       });
     } else {
-      res.status(200);
-      res.json({
-        token: user.generateJwt()
+      if( user.validPassword(req.body.password))
+      {
+        res.status(200);
+        res.json({
+          token: user.generateJwt()
+        });
+      } else {
+        res.status(400);
+        res.json({
+        message: "error: " || `wrong username or password provided: ${req.body.username}...`
       });
+      }
+      
     }
   });
 };
