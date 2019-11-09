@@ -46,14 +46,12 @@ export class DetailexerciseprogramComponent implements OnInit, OnDestroy {
   }
 
   private async _init() {
-    const programNameFromUrl = last(
-      this.router.url.split('/')
-    );
+    const programNameFromUrl = last(this.router.url.split('/'));
 
     if (!this.exerciseProgramService.allPrograms.allPrograms.length) {
       await this.exerciseProgramService.getAllExercisesPrograms();
     }
- 
+
     this.exerciseProgramName = decodeURIComponent(programNameFromUrl as string);
     const exerciseProgram = this.exerciseProgramService.allPrograms.allPrograms.find(
       ep => ep.name === this.exerciseProgramName
