@@ -20,7 +20,8 @@ export class DetailexerciseprogramComponent implements OnInit, OnDestroy {
     private router: Router,
     private exerciseProgramService: ExerciseProgramService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) {
+  }
   exerciseProgramName: any;
   currentProgram: exerciseprogram;
   navigationSubscription: Subscription;

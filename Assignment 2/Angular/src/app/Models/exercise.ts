@@ -12,7 +12,7 @@ export class exercise {
     this.name = name;
     this.description = description;
     this.set = set;
-    this.repsOrtime = repsOrTime;
+    this.repsOrTime = repsOrTime;
     this.id = id;
     this.activities = activities;
   }
@@ -20,6 +20,6 @@ export class exercise {
   name: string;
   description: string;
   set: number;
-  repsOrtime: string;
+  repsOrTime: string;
   activities: Log;
 }
