@@ -35,7 +35,7 @@ export class ExerciseProgramService {
     private client: HttpClient,
     private loadingService: IsLoadingService,
     private snackbar: SnackbarService
-  ) {}
+  ) { }
   public postExerciseProgram = async (ex: exerciseprogram) =>
     await this.loadingService.add(
       this.client.post<exerciseprogram>(this.getUrl(ex), ex).toPromise().then(() => {
@@ -47,14 +47,10 @@ export class ExerciseProgramService {
 
   public getAllExercisesPrograms = async () => {
     /* this.allPrograms = */
-     await this.loadingService.add(
-      this.client.get<AllPrograms>(this.exerciseProgramUrl).subscribe(res => {
-        this.allPrograms = res;
-      }, err => {
-        this.snackbar.openFailureSnackBar('failed to get exerciseprograms ' + err );
-      })
+    this.allPrograms = await this.loadingService.add(
+      this.client.get<AllPrograms>(this.exerciseProgramUrl).toPromise()
     );
-     return this.allPrograms;
+    return this.allPrograms;
   }
   public getExerciseProgram = async (id: string) =>
     await this.loadingService.add(

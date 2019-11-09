@@ -14,7 +14,7 @@ export class AllexerciseComponent implements OnInit {
     private router: Router,
     private exerciseProgramService: ExerciseProgramService,
     public authService: AuthenticationService
-  ) {}
+  ) { }
 
   // tslint:disable-next-line:max-line-length
   allPrograms: AllPrograms = { allPrograms: [] }; // because the result is not a list of exercisePrograms but rather a DTO containing a list of said.
@@ -31,4 +31,5 @@ export class AllexerciseComponent implements OnInit {
   async ngOnInit() {
     this.allPrograms = await this.exerciseProgramService.getAllExercisesPrograms();
   }
+
 }

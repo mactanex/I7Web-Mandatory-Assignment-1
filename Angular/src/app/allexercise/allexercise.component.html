@@ -5,7 +5,7 @@
 </div>
 
 <mat-action-list *ngIf="authService.loggedIn()">
-  <div *ngFor="let exerciseProgram of allPrograms.allPrograms">
+  <div *ngFor="let exerciseProgram of allPrograms.allPrograms ">
     <button mat-list-item (click)="details(exerciseProgram.name)">
       <h4 mat-line>{{exerciseProgram.name}}</h4>
       <p class="btn-label" mat-line>Click to see details</p>
@@ -14,7 +14,7 @@
 </mat-action-list>
 
 <mat-action-list *ngIf="!authService.loggedIn()" role="list">
-  <div *ngFor="let exerciseProgram of allPrograms.allPrograms" role="listitem">
+  <div *ngFor="let exerciseProgram of allPrograms.allPrograms " role="listitem">
     <div mat-list-item *ngIf="!authService.loggedIn()" style="border: 1px solid black;">
       <h4 mat-line>{{exerciseProgram.name}}</h4>
     </div>
