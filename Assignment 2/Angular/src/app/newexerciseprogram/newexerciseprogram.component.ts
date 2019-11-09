@@ -25,6 +25,8 @@ export class NewexerciseprogramComponent implements OnInit {
     // this is not viable
   }
 
+  get formData() { return this.exerciseprogramForm.get('exercises') as FormArray; }
+
   createExercise(): FormGroup {
     return this.formBuilder.group({
       exercisename: '',

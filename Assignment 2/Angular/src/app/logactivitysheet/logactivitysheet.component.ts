@@ -3,7 +3,6 @@ import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
 import { ActivityService } from '../services/activity.service';
 import { Log } from '../Models/Log';
 import { Router } from '@angular/router';
-import { ExerciseProgramService } from '../services/exercise-program.service';
 
 @Component({
   selector: 'app-logactivitysheet',
@@ -28,7 +27,6 @@ export class LogactivitysheetComponent implements OnInit {
   IsNumeric = (e: any) => {
     const keyCode = e.keyCode === 0 ? e.charCode : e.keyCode;
     const ret = keyCode >= 48 && keyCode <= 57;
-    //  document.getElementById("error").style.display = ret ? "none" : "inline";
     return ret;
   }
 
@@ -39,7 +37,6 @@ export class LogactivitysheetComponent implements OnInit {
   async saveactivity() {
     // tslint:disable-next-line:radix
     const newLog = new Log(parseInt(this.sets), this.reps);
-    // console.log(this.sets + ' ' + this.reps);
     // call service to add this to activity
     this.bottomSheetRef.dismiss();
     await this.activityService.postActivity(
@@ -47,23 +44,10 @@ export class LogactivitysheetComponent implements OnInit {
       this.data.ids.exerciseid,
       newLog
     );
+    // not best practis should bind to data to update on its own.
     this.router.navigateByUrl('allexercise');
-    // await this.redirectTo(this.router.url);
   }
 
-  // In an attempt to force refresh the component when adding activity...
-  // redirectTo(uri: string) {
-  //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-  //     this.router.navigate([uri], { queryParams: { refresh: 1 } });
-  //   });
-  // }
-
-  // In an attempt to force refresh the component when adding activity...
-  // randomParam = () =>
-  //   '_' +
-  //   Math.random()
-  //     .toString(36)
-  //     .substr(2, 9)
 
   ngOnInit() {}
 }

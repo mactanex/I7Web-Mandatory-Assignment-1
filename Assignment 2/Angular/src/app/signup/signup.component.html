@@ -51,9 +51,6 @@
         </p>
         <br />
         <button id="opret" type="submit" mat-raised-button color="primary">signup</button>
-        <div *ngIf="(opretState$ | async)?.pending " class="loading">
-          <mat-spinner diameter="30"></mat-spinner>
-        </div>
       </form>
     </mat-card-content>
     <mat-card-actions>

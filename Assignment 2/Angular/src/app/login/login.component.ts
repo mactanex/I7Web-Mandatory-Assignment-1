@@ -50,9 +50,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     } else {
-      // console.log('loggedin ' + this.User.username + ' ' + this.User.password);
       this.authService.login(this.User);
-      // this.dalservice.login(this.User);
     }
   }
 
