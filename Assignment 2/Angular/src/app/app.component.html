@@ -1,24 +1,31 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Mandatory assignment 2 - {{title}}</span>
-    <span class="example-spacer"></span>
-    <span *ngIf="loggedin" class="menu-item" routerLink="newExercise"><button mat-raised-button color="accent">Create
-        New ExerciseProgram</button>
-    </span>
-    <span *ngIf="loggedin" class="menu-item"><button mat-raised-button color="accent" (click)='logout()'>Log out
-      </button>
-    </span>
+<div fxLayout="column" fxFlexFill class="page-wrapper">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span><a [routerLink]="['/']" routerLinkActive="router-link-active"
+          style="text-decoration: none; color: white;">Mandatory assignment 2 - {{title}}</a></span>
+      <span class="example-spacer"></span>
+      <span *ngIf="loggedin" class="menu-item" routerLink="newExercise"><button mat-raised-button color="accent">Create
+          New ExerciseProgram</button>
+      </span>
+      <span *ngIf="loggedin" class="menu-item"><button mat-raised-button color="accent" (click)='logout()'>Log out
+        </button>
+      </span>
 
-    <span *ngIf="!loggedin" class="menu-item" routerLink="login"><button mat-raised-button color="accent">Login</button>
-    </span>
-    <span *ngIf="!loggedin" class="menu-item" routerLink="signup"><button mat-raised-button
-        color="accent">Signup</button> </span>
+      <span *ngIf="!loggedin" class="menu-item" routerLink="login"><button mat-raised-button
+          color="accent">Login</button>
+      </span>
+      <span *ngIf="!loggedin" class="menu-item" routerLink="signup"><button mat-raised-button
+          color="accent">Signup</button> </span>
 
-    <span class="menu-item" routerLink="allexercise"><button mat-raised-button color="accent">See
-        Exerciseprograms</button></span>
-
-  </mat-toolbar-row>
-</mat-toolbar>
-<div class="main-div">
-  <router-outlet></router-outlet>
+      <span class="menu-item" routerLink="allexercise"><button mat-raised-button color="accent">See
+          Exerciseprograms</button></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="main-div">
+    <mat-progress-bar *ngIf="isLoading | async" mode="indeterminate" color="warn"
+      style="position: absolute; top: 0; z-index: 5000;">
+    </mat-progress-bar>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
 </div>

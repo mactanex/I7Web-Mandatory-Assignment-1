@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Log } from '../Models/Log';
 import { HttpClient } from '@angular/common/http';
+import { IsLoadingService } from '@service-work/is-loading';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivityService {
-  constructor(private client: HttpClient) {}
+  constructor(
+    private client: HttpClient,
+    private loadingService: IsLoadingService
+  ) {}
 
   // private getallactivities =
   //   'http://localhost:3333/exerciseprogram/:id/exercise/:id/activity/GetAll';
@@ -29,45 +33,55 @@ export class ActivityService {
     exerciseId: string,
     activity: Log
   ) =>
-    await this.client
-      .post<Log>(this.getUrl(exerciseProgramId, exerciseId), activity)
-      .toPromise()
+    await this.loadingService.add(
+      this.client
+        .post<Log>(this.getUrl(exerciseProgramId, exerciseId), activity)
+        .toPromise()
+    )
 
   public getAllActivities = async (
     exerciseProgramId: string,
     exerciseId: string
   ) =>
-    await this.client
-      .get<Log[]>(this.getUrl(exerciseProgramId, exerciseId))
-      .toPromise()
+    await this.loadingService.add(
+      this.client
+        .get<Log[]>(this.getUrl(exerciseProgramId, exerciseId))
+        .toPromise()
+    )
 
   public getActivity = async (
     exerciseProgramId: string,
     id: string,
     exerciseId: string
   ) =>
-    await this.client
-      .get<Log>(this.getUrl(exerciseProgramId, exerciseId) + `/${id}`)
-      .toPromise()
+    await this.loadingService.add(
+      this.client
+        .get<Log>(this.getUrl(exerciseProgramId, exerciseId) + `/${id}`)
+        .toPromise()
+    )
 
   public putActivity = async (
     exerciseProgramId: string,
     exerciseId: string,
     activity: Log
   ) =>
-    await this.client
-      .put<Log>(
-        this.getUrl(exerciseProgramId, exerciseId) + `/${activity.id}`,
-        activity
-      )
-      .toPromise()
+    await this.loadingService.add(
+      this.client
+        .put<Log>(
+          this.getUrl(exerciseProgramId, exerciseId) + `/${activity.id}`,
+          activity
+        )
+        .toPromise()
+    )
 
   public deleteActivity = async (
     exerciseProgramId: string,
     id: string,
     exerciseId: string
   ) =>
-    await this.client
-      .delete<Log>(this.getUrl(exerciseProgramId, exerciseId) + `/${id}`)
-      .toPromise()
+    await this.loadingService.add(
+      this.client
+        .delete<Log>(this.getUrl(exerciseProgramId, exerciseId) + `/${id}`)
+        .toPromise()
+    )
 }

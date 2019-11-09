@@ -3,7 +3,8 @@
     <input #set (blur)="updateset(set.value)" type="number" matInput placeholder="Sets" />
   </div>
   <div mat-list-item>
-    <input #reps (blur)="updatereps(reps.value)" type="text" matInput placeholder="Repsortime" />
+    <input #reps (blur)="updatereps(reps.value)" type="text" matInput placeholder="Repsortime"
+      onkeypress="return IsNumeric(event);" />
   </div>
   <div mat-list-item>
     <button color="primary" mat-raised-button (click)="saveactivity()">Save</button>

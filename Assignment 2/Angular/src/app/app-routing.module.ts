@@ -6,8 +6,11 @@ import { AllexerciseComponent } from './allexercise/allexercise.component';
 import { NewexerciseprogramComponent } from './newexerciseprogram/newexerciseprogram.component';
 import { DetailexerciseprogramComponent } from './detailexerciseprogram/detailexerciseprogram.component';
 import { AuthGuard } from './_Helpers/auth.guard';
+import { FrontPageComponent } from './front-page/front-page.component';
 
 const appRoutes: Routes = [
+  { path: '', component: FrontPageComponent, pathMatch: 'full' },
+
   {
     path: 'login',
     component: LoginComponent

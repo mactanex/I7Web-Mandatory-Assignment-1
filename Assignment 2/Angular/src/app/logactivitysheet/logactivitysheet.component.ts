@@ -24,6 +24,13 @@ export class LogactivitysheetComponent implements OnInit {
     this.sets = value;
   }
 
+  IsNumeric = (e: any) => {
+    const keyCode = e.keyCode === 0 ? e.charCode : e.keyCode;
+    const ret = keyCode >= 48 && keyCode <= 57;
+    //  document.getElementById("error").style.display = ret ? "none" : "inline";
+    return ret;
+  }
+
   updatereps(value: string) {
     this.reps = value;
   }

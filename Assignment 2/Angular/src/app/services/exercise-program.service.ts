@@ -4,6 +4,7 @@ import { exercise } from '../Models/exercise';
 import { environment } from 'src/environments/environment';
 import { exerciseprogram } from '../Models/exerciseprogram';
 import { AllPrograms } from '../Models/AllPrograms';
+import { IsLoadingService } from '@service-work/is-loading';
 
 @Injectable({
   providedIn: 'root'
@@ -28,28 +29,39 @@ export class ExerciseProgramService {
     return this.exerciseProgramUrl;
   }
 
-  constructor(private client: HttpClient) {}
+  constructor(
+    private client: HttpClient,
+    private loadingService: IsLoadingService
+  ) {}
   public postExerciseProgram = async (ex: exerciseprogram) =>
-    await this.client.post<exerciseprogram>(this.getUrl(ex), ex).toPromise()
+    await this.loadingService.add(
+      this.client.post<exerciseprogram>(this.getUrl(ex), ex).toPromise()
+    )
 
   public getAllExercisesPrograms = async () => {
-    this.allPrograms = await this.client
-      .get<AllPrograms>(this.exerciseProgramUrl)
-      .toPromise();
+    this.allPrograms = await this.loadingService.add(
+      this.client.get<AllPrograms>(this.exerciseProgramUrl).toPromise()
+    );
     return this.allPrograms;
   }
   public getExerciseProgram = async (id: string) =>
-    await this.client
-      .get<exerciseprogram>(this.exerciseProgramUrl + `/${id}`)
-      .toPromise()
+    await this.loadingService.add(
+      this.client
+        .get<exerciseprogram>(this.exerciseProgramUrl + `/${id}`)
+        .toPromise()
+    )
 
   public putExerciseProgram = async (ex: exerciseprogram) =>
-    await this.client
-      .put<exerciseprogram>(this.exerciseProgramUrl + `/${ex.id}`, ex)
-      .toPromise()
+    await this.loadingService.add(
+      this.client
+        .put<exerciseprogram>(this.exerciseProgramUrl + `/${ex.id}`, ex)
+        .toPromise()
+    )
 
   public deleteExerciseProgram = async (id: string) =>
-    await this.client
-      .delete<exerciseprogram>(this.exerciseProgramUrl + `/${id}`)
-      .toPromise()
+    await this.loadingService.add(
+      this.client
+        .delete<exerciseprogram>(this.exerciseProgramUrl + `/${id}`)
+        .toPromise()
+    )
 }

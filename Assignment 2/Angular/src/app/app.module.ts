@@ -20,6 +20,9 @@ import { JwtInterceptor } from './_Helpers/jwt.interceptor';
 
 import { LogactivitysheetComponent } from './logactivitysheet/logactivitysheet.component';
 import { NoCacheHeadersInterceptor } from './_Helpers/no-cache-intercepter.service';
+import { FrontPageComponent } from './front-page/front-page.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { NoCacheHeadersInterceptor } from './_Helpers/no-cache-intercepter.servi
     AllexerciseComponent,
     NewexerciseprogramComponent,
     DetailexerciseprogramComponent,
-    LogactivitysheetComponent
+    LogactivitysheetComponent,
+    FrontPageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +44,7 @@ import { NoCacheHeadersInterceptor } from './_Helpers/no-cache-intercepter.servi
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
+    MatProgressBarModule,
     HttpClientModule
   ],
   providers: [
